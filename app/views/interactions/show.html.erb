@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @interaction.type %>
+</p>
+
+<p>
+  <strong>Vote:</strong>
+  <%= @interaction.vote %>
+</p>
+
+<p>
+  <strong>Interest:</strong>
+  <%= @interaction.interest %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @interaction.note %>
+</p>
+
+<p>
+  <strong>Listing:</strong>
+  <%= @interaction.listing %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @interaction.user %>
+</p>
+
+<%= link_to 'Edit', edit_interaction_path(@interaction) %> |
+<%= link_to 'Back', interactions_path %>

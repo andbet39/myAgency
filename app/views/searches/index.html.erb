@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Le mie ricerche</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Keyword</th>
+      <th>Zona</th>
+      <th>Annunci</th>
+      <th>Last run</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @searches.each do |search| %>
+      <tr>
+        <td><%= search.keyword %></td>
+        <td><%= search.zona %></td>
+        <td><%= search.search_results.count() %>
+        <td><%= link_to 'Annunci', results_path(:search_id => search.id) %></td>
+        <td><%= link_to 'Esegui', porta_portese_run_search_path(:search_id => search.id) %></td>
+        <td><%= link_to 'Show', search %></td>
+        <td><%= link_to 'Edit', edit_search_path(search) %></td>
+        <td><%= link_to 'Destroy', search, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Search', new_search_path %>

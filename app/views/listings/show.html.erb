@@ -1,0 +1,64 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @listing.title %>
+</p>
+
+<p>
+  <strong>Link:</strong>
+  <%= @listing.link %>
+</p>
+
+<p>
+  <strong>Tel:</strong>
+  <%= @listing.tel %>
+</p>
+
+<p>
+  <strong>Tel2:</strong>
+  <%= @listing.tel2 %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @listing.email %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @listing.description %>
+</p>
+
+<p>
+  <strong>Insert date:</strong>
+  <%= @listing.insert_date %>
+</p>
+
+<p>
+  <strong>Mt:</strong>
+  <%= @listing.mt %>
+</p>
+
+<p>
+  <strong>Zona:</strong>
+  <%= @listing.zona %>
+</p>
+
+<p>
+  <strong>Id annuncio:</strong>
+  <%= @listing.id_annuncio %>
+</p>
+
+<p>
+  <strong>Origin:</strong>
+  <%= @listing.origin %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @listing.price %>
+</p>
+
+<%= link_to 'Edit', edit_listing_path(@listing) %> |
+<%= link_to 'Back', listings_path %>

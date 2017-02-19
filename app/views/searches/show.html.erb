@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Keyword:</strong>
+  <%= @search.keyword %>
+</p>
+
+<p>
+  <strong>Zona:</strong>
+  <%= @search.zona %>
+</p>
+
+<p>
+  <strong>Last run:</strong>
+  <%= @search.last_run %>
+</p>
+
+<%= link_to 'Edit', edit_search_path(@search) %> |
+<%= link_to 'Back', searches_path %>

@@ -1,0 +1,47 @@
+<%= form_for(interaction) do |f| %>
+  <% if interaction.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(interaction.errors.count, "error") %> prohibited this interaction from being saved:</h2>
+
+      <ul>
+      <% interaction.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :type %>
+    <%= f.text_field :type %>
+  </div>
+
+  <div class="field">
+    <%= f.label :vote %>
+    <%= f.number_field :vote %>
+  </div>
+
+  <div class="field">
+    <%= f.label :interest %>
+    <%= f.number_field :interest %>
+  </div>
+
+  <div class="field">
+    <%= f.label :note %>
+    <%= f.text_area :note %>
+  </div>
+
+  <div class="field">
+    <%= f.label :listing_id %>
+    <%= f.text_field :listing_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :user_id %>
+    <%= f.text_field :user_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

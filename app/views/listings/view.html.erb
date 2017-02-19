@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<div id="app">
+  <prova></prova> 
+</div>
+<h1>Annunci per <%= @search.keyword %> in zona <%= @search.zona %></h1>
+
+<table class="datatable">
+  <thead>
+    <tr>
+      <th>Data</th>
+      <th>Title</th>
+      <th>Link</th>
+      <th>Tel</th>
+      <th>Tel2</th>
+      <th>Email</th>
+      <th>Mt</th>
+      <th>Price</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @results.each do |result| %>
+      <tr>
+        <td><%= result.listing.created_at.to_formatted_s(:short) %></td>
+        <td><%= result.listing.title %></td>
+        <td><a href="http://www.portaportese.it<%= result.listing.link %>">Link</a></td>
+        <td><%= result.listing.tel %></td>
+        <td><%= result.listing.tel2 %></td>
+        <td><%= result.listing.email %></td>
+        <td><%= result.listing.mt %></td>
+        <td><%= result.listing.price %></td>
+        <td><%= link_to 'Show', result.listing %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<script type="text/javascript">
+$('.datatable').DataTable({
+// ajax: ...,
+// autoWidth: false,
+// pagingType: 'full_numbers',
+// processing: true,
+// serverSide: true,
+
+// Optional, if you want full pagination controls.
+// Check dataTables documentation to learn more about available options.
+// http://datatables.net/reference/option/pagingType
+});
+</script>

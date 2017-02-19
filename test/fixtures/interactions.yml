@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 
+  vote: 1
+  interest: 1
+  note: MyText
+  listing: one
+  user: one
+
+two:
+  type: 
+  vote: 1
+  interest: 1
+  note: MyText
+  listing: two
+  user: two
