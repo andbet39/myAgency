@@ -2,14 +2,13 @@
 
 <h1>Le mie ricerche</h1>
 
-<table>
+<table class="table table-bordered">
   <thead>
     <tr>
       <th>Keyword</th>
       <th>Zona</th>
       <th>Annunci</th>
-      <th>Last run</th>
-      <th colspan="3"></th>
+      <th colspan="5"></th>
     </tr>
   </thead>
 
@@ -18,7 +17,7 @@
       <tr>
         <td><%= search.keyword %></td>
         <td><%= search.zona %></td>
-        <td><%= search.search_results.count() %>
+        <td><%= search.listings.count() %>
         <td><%= link_to 'Annunci', results_path(:search_id => search.id) %></td>
         <td><%= link_to 'Esegui', porta_portese_run_search_path(:search_id => search.id) %></td>
         <td><%= link_to 'Show', search %></td>

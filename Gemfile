@@ -43,6 +43,7 @@ gem 'nokogiri'
 gem 'jquery-datatables-rails', '~> 3.4.0'
 gem 'webpack-rails'
 gem 'bootstrap-sass', '~> 3.3.6'
+gem "font-awesome-rails"
 
 
 group :development, :test do

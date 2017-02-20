@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170219115352) do
+ActiveRecord::Schema.define(version: 20170220160415) do
 
   create_table "interactions", force: :cascade do |t|
     t.string   "type"
@@ -38,8 +38,9 @@ ActiveRecord::Schema.define(version: 20170219115352) do
     t.string   "id_annuncio"
     t.string   "origin"
     t.string   "price"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.boolean  "favourite",   default: false
   end
 
   create_table "search_results", force: :cascade do |t|

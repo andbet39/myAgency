@@ -9,8 +9,21 @@ class ListingsController < ApplicationController
 
 
   def view
-    @results  = SearchResult.where(search:params['search_id'])
     @search = Search.find(params['search_id'])
+    i = 0
+    totpricemq = 0
+
+    @search.listings.each() do |lis|
+
+      if lis.price != nil && lis.mt != nil && lis.price != ""  && lis.mt != ""
+        pricemq = Integer(lis.price)/Integer(lis.mt)
+        totpricemq = totpricemq + pricemq
+        i = i + 1
+      end
+    end
+
+    @avg_pricemq = totpricemq/i
+
   end
 
   # GET /listings/1

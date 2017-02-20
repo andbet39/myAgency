@@ -1,6 +1,22 @@
 <template>
   <div class="row">
-      <v-client-table :data="listings" :columns="columns" :options="options"></v-client-table>
+
+      <table class="table">
+        <thead>
+          <th>Title</th>
+          <th>Price</th>
+          <th>Mq </th>
+          <th>Price/Mq </th>
+          <th>Tel.</th>
+          <th>Link</th>
+          <th>Source</th>
+          <th colspan="2">
+        </thead>
+        <tbody>
+          <listing-row v-for="listing in listings" v-bind:listing="listing" ></listing-row>
+        </tbody>
+      </table>
+
   </div>
 </template>
 
@@ -8,17 +24,14 @@
 import axios from 'axios'
 
 export default {
+  props:['searchid'],
   data:function(){
     return {
-      columns:['title','tel','tel2','mt','price'],
       listings:[],
-      options:{
-        
-      }
     }
   },
   mounted() {
-          axios.get('/listings.json').then((res)=>{
+          axios.get('/api/listing_for_search?search_id='+this.searchid ).then((res)=>{
             console.log(res);
             this.listings = res.data;
           });

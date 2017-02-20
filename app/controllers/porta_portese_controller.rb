@@ -33,8 +33,7 @@ class PortaPorteseController < ApplicationController
       link_pagina = "http://www.portaportese.it"+pagina['href']
       parsepage(link_pagina,search.id)
     end #pagine
-    redirect_to(:back)
-
+    redirect_back(fallback_location: searches_path)
   end
 
 
@@ -59,9 +58,10 @@ class PortaPorteseController < ApplicationController
       pagina_annuncio = Nokogiri::HTML(open("http://www.portaportese.it" + link, {ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE}))
 
       listing.title = title
-      listing.link  = link
+      listing.link  = "http://www.portaportese.it"+link
       listing.id_annuncio = annuncio['name']
-      listing.price = annuncio.css('.attr-prezzo').text
+      price = annuncio.css('.attr-prezzo').text.delete('€').delete(' ').delete('.')
+      listing.price = price
       listing.mt  = annuncio.css('.attr-mq').text
       listing.description = pagina_annuncio.css('p.ins-testo').text
       listing.origin  = 'PP'
@@ -83,9 +83,6 @@ class PortaPorteseController < ApplicationController
           search = Search.find(search_id)
           search.search_results.create(listing:listing)
       end
-
-
-
 
     end #annunci
   end

@@ -2,6 +2,7 @@
 <h1>
   Annunci per <%= @search.keyword %> in zona <%= @search.zona %>
 </h1>
+<h2><%= @avg_pricemq %></h2>
 <div id="app">
-  <prova></prova>
+  <prova v-bind:searchid="<%= @search.id %>" ></prova>
 </div>
