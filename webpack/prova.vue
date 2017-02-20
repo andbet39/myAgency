@@ -1,11 +1,6 @@
 <template>
-  <div>
-      <h2>Listing</h2>
-      <ul>
-        <li v-for="listing in listings">
-           {{listing.title}}
-        </li>
-      </ul>
+  <div class="row">
+      <v-client-table :data="listings" :columns="columns" :options="options"></v-client-table>
   </div>
 </template>
 
@@ -14,7 +9,13 @@ import axios from 'axios'
 
 export default {
   data:function(){
-    return {listings:[]}
+    return {
+      columns:['title','tel','tel2','mt','price'],
+      listings:[],
+      options:{
+        
+      }
+    }
   },
   mounted() {
           axios.get('/listings.json').then((res)=>{
