@@ -11,6 +11,17 @@
   </head>
 
   <body >
+    <%= navbar fixed: :top do %>
+      <%= navbar_header brand: 'My great app', brand_link: '/home' %>
+      <%= navbar_collapse do  %>
+           <%=  navbar_group class: 'foo', id: 'menu' do %>
+            <%=   navbar_text 'Pick an option:' %>
+            <%=   navbar_item "Ricerche", '/searches'  %>
+            <%=   navbar_item "Annunci", '/my_listing/index' %>
+           <% end %>
+      <% end %>
+    <% end %>
+
     <div class="container">
 
         <%= yield %>

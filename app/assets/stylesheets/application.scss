@@ -1,3 +1,10 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome";
+
+@import "dataTables/bootstrap/3/jquery.dataTables.bootstrap";
+
+
+body {
+  padding-top: 70px;
+}

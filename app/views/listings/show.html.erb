@@ -60,5 +60,32 @@
   <%= @listing.price %>
 </p>
 
+<h3>Interazioni</h3>
+<a href="/my_interaction/new?listing_id=<%= @listing.id %>&type=<%= @type %>"> <button class="btn btn-success">Nuova</button></a>
+  <table class="table table-condensed">
+    <thead>
+      <th>Id</th>
+      <th>Created</th>
+      <th>Nome</th>
+      <th>Tipo</th>
+      <th>Voto</th>
+    </thead>
+    <tbody>
+      <% @listing.interactions.each() do | interaction | %>
+
+      <tr>
+        <td>  <%= interaction.id %></td>
+        <td>  <%= interaction.created_at %></td>
+        <td>  <%= interaction.name %></td>
+        <td>  <%= interaction.type %></td>
+        <td>  <%= interaction.vote %></td>
+      </tr>
+    <% end %>
+
+    </tbody>
+  </table>
+
+
+
 <%= link_to 'Edit', edit_listing_path(@listing) %> |
 <%= link_to 'Back', listings_path %>
