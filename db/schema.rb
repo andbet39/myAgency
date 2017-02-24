@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170221074944) do
+ActiveRecord::Schema.define(version: 20170224163320) do
 
   create_table "interactions", force: :cascade do |t|
     t.string   "inttype"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20170221074944) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.boolean  "favourite",   default: false
+    t.boolean  "isnew"
   end
 
   create_table "search_results", force: :cascade do |t|

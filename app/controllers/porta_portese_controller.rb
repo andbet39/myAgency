@@ -45,9 +45,12 @@ class PortaPorteseController < ApplicationController
       old_annuncio = Listing.where(id_annuncio: annuncio['name']).first
       if  old_annuncio != nil
           listing = old_annuncio
+          listing.isnew = false
           logger.info('Update annuncio : '+  annuncio['name'])
+
       else
           listing = Listing.new()
+          listing.isnew  = true
           logger.info('New annuncio : '+  annuncio['name'])
           listing.insert_date = Time.now
       end

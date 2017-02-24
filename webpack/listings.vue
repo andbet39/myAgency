@@ -8,10 +8,14 @@
           <div class="col-md-2">
             <button class="btn btn-primary" v-on:click="togglefav" ><i v-bind:class="[onlyfav ?  'fa-heart' : 'fa-heart-o', 'fa']" aria-hidden="true"></i></button>
           </div>
+          <div class="col-md-2">
+            <button class="btn btn-primary" v-on:click="togglenew" ><i v-bind:class="[onlynew ?  'fa-exclamation-triangle' : 'fa-exclamation', 'fa']" aria-hidden="true"></i></button>
+          </div>
         </div>
         <br>
         <table class="table table-bordered">
           <thead>
+            <th>New</th>
             <th>Title</th>
             <th>Price</th>
             <th>Mq </th>
@@ -39,6 +43,7 @@ export default {
     return {
       listings:[],
       onlyfav:false,
+      onlynew:false
     }
   },
   mounted() {
@@ -58,14 +63,22 @@ export default {
       },
   computed: {
     filteredListing: function(){
-      var filtered =[];
+      var filtered = this.listings;
+
       if( this.onlyfav == true){
-          this.listings.forEach((listing)=>{
-            if (listing.favourite == true) filtered.push(listing);
-          });
-      }else{
-          filtered =  this.listings;
+        filtered = filtered.filter(function(listing){
+            console.log("filter");
+            return listing.favourite
+        });
       }
+      if( this.onlynew == true){
+          filtered = filtered.filter(function(listing){
+              console.log("filter");
+              return listing.isnew
+          });
+      }
+
+
 
       return filtered;
     }
@@ -73,9 +86,14 @@ export default {
   methods:{
     togglefav:function(){
       this.onlyfav = !this.onlyfav;
+    },
+    togglenew:function(){
+      this.onlynew = !this.onlynew;
+      console.log(this.onlynew);
     }
   }
 }
+
 </script>
 
 <style lang="css">

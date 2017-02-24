@@ -2,7 +2,20 @@
 <h1>
   Annunci per <%= @search.keyword %> in zona <%= @search.zona %>
 </h1>
-<h2>Avg prc/mq :<%= @avg_pricemq %></h2>
+<div class="row">
+  <div class="col-md-3">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title">Prezzo Mq Medio</h3>
+      </div>
+      <div class="panel-body">
+        Avg prc/mq :<%= @avg_pricemq %>
+      </div>
+    </div>
+  </div>
+
+</div>
+<br>
 <div id="app">
   <listings v-bind:searchid="<%= @search.id %>" ></listings>
 </div>

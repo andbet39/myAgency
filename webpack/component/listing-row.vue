@@ -1,6 +1,7 @@
 
 <template >
   <tr>
+    <td><i style="color:red" v-if="listing.isnew" class="fa fa-exclamation red" aria-hidden="true"></i></td>
     <td><a :href="showlink">{{listing.title}}</a></td>
     <td>{{listing.price | currency('€',0) }}</td>
     <td>{{listing.mt}}</td>
@@ -42,4 +43,7 @@ export default {
 </script>
 
 <style lang="css">
+red:{
+  color:red
+}
 </style>
