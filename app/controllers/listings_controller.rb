@@ -88,6 +88,6 @@ class ListingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def listing_params
-      params.require(:listing).permit(:title, :link, :tel, :tel2, :email, :description, :insert_date, :mt, :zona, :id_annuncio, :origin, :price)
+      params.require(:listing).permit(:title, :link, :tel, :tel2, :email, :description, :insert_date, :mt, :zona, :id_annuncio, :origin, :price,:favourite)
     end
 end

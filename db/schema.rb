@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 20170221074944) do
 
   create_table "interactions", force: :cascade do |t|
-    t.string   "type"
+    t.string   "inttype"
     t.integer  "vote"
     t.integer  "interest"
     t.text     "note"

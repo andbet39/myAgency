@@ -5,8 +5,10 @@ class MyInteractionController < ApplicationController
   end
 
   def new
-    @listing = params['listing_id']
-    @type = params['type']
+    @listing = Listing.find(params['listing_id'])
+
+    @inttype = params['inttype']
+
   end
 
   def create
@@ -18,7 +20,7 @@ class MyInteractionController < ApplicationController
     @interaction.interest = params['interest']
     @interaction.vote = params['vote']
     @interaction.listing = listing
-    @interaction.type = params['type']
+    @interaction.inttype = params['inttype']
 
 
     respond_to do |format|

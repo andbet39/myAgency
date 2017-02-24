@@ -18,7 +18,7 @@
     <% @interactions.each do |interaction| %>
       <tr>
         <td><%= interaction.created_at.to_formatted_s(:long) %></td>
-        <td><%= interaction.type %></td>
+        <td><%= interaction.inttype %></td>
         <td><%= interaction.vote %></td>
         <td><%= interaction.interest %></td>
         <td><%= interaction.note %></td>

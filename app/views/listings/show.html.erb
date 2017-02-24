@@ -61,7 +61,7 @@
 </p>
 
 <h3>Interazioni</h3>
-<a href="/my_interaction/new?listing_id=<%= @listing.id %>&type=<%= @type %>"> <button class="btn btn-success">Nuova</button></a>
+<a href="/my_interaction/new?listing_id=<%= @listing.id %>&inttype=Tel"> <button class="btn btn-success">Nuova</button></a>
   <table class="table table-condensed">
     <thead>
       <th>Id</th>
@@ -77,7 +77,7 @@
         <td>  <%= interaction.id %></td>
         <td>  <%= interaction.created_at %></td>
         <td>  <%= interaction.name %></td>
-        <td>  <%= interaction.type %></td>
+        <td>  <%= interaction.inttype %></td>
         <td>  <%= interaction.vote %></td>
       </tr>
     <% end %>

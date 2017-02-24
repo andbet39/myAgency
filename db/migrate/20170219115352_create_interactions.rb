@@ -1,8 +1,8 @@
 class CreateInteractions < ActiveRecord::Migration[5.0]
   def change
     create_table :interactions do |t|
-      t.string :type
-      t.integer :vote
+      t.string :inttype
+      t.integer :vote 
       t.integer :interest
       t.text :note
       t.references :listing, foreign_key: true

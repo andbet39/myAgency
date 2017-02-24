@@ -1,33 +1,45 @@
 <p id="notice"><%= notice %></p>
-
-<h1>Le mie ricerche</h1>
-
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>Keyword</th>
-      <th>Zona</th>
-      <th>Annunci</th>
-      <th colspan="5"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @searches.each do |search| %>
-      <tr>
-        <td><%= search.keyword %></td>
-        <td><%= search.zona %></td>
-        <td><%= search.listings.count() %>
-        <td><%= link_to 'Annunci', results_path(:search_id => search.id) %></td>
-        <td><%= link_to 'Esegui', porta_portese_run_search_path(:search_id => search.id) %></td>
-        <td><%= link_to 'Show', search %></td>
-        <td><%= link_to 'Edit', edit_search_path(search) %></td>
-        <td><%= link_to 'Destroy', search, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Le mie ricerche</h3>
+  </div>
+  <div class="panel-body">
+    <table class="table datatable" id="search-table">
+      <thead>
+        <tr>
+          <th>Keyword</th>
+          <th>Zona</th>
+          <th>Annunci</th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @searches.each do |search| %>
+          <tr>
+            <td><%= search.keyword %></td>
+            <td><%= search.zona %></td>
+            <td><%= search.listings.count() %>
+            <td><%= link_to 'Annunci', results_path(:search_id => search.id) %></td>
+            <td><%= link_to 'Esegui', porta_portese_run_search_path(:search_id => search.id) %></td>
+            <td><%= link_to 'Show', search %></td>
+            <td><%= link_to 'Edit', edit_search_path(search) %></td>
+            <td><%= link_to 'Destroy', search, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 <%= link_to 'New Search', new_search_path %>
+
+
+
+<script type="text/javascript">
+$('.datatable').DataTable({
+});
+</script>
