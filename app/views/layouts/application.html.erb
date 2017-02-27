@@ -12,13 +12,25 @@
 
   <body >
     <%= navbar fixed: :top do %>
-      <%= navbar_header brand: 'My great app', brand_link: '/home' %>
-      <%= navbar_collapse do  %>
-           <%=  navbar_group class: 'foo', id: 'menu' do %>
-            <%=   navbar_item "Ricerche", '/searches'  %>
-            <%=   navbar_item "Annunci", '/my_listing/index' %>
-            <%=   navbar_item "Interazioni", '/interactions' %>
-           <% end %>
+      <%= navbar_header brand: 'MyAgency', brand_link: '/' %>
+      <%= navbar_group do %>
+        <%= navbar_collapse do  %>
+             <%=  navbar_group class: 'foo', id: 'menu' do %>
+              <%=   navbar_item "Ricerche", '/searches'  %>
+              <%=   navbar_item "Annunci", '/my_listing/index' %>
+              <%=   navbar_item "Interazioni", '/interactions' %>
+             <% end %>
+        <% end %>
+      <% end %>
+      <%= navbar_group align: 'right' do %>
+        <% if current_user %>
+        <%= navbar_dropdown current_user.email do %>
+               <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+        <% end %>
+        <% else %>
+        <%= navbar_item "Log In", '/users/sign_in' %>
+        <%= navbar_item "Signup", '/users/sign_up' %>
+      <% end %>
       <% end %>
     <% end %>
 

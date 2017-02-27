@@ -1,4 +1,4 @@
-<%= form_for(search) do |f| %>
+<%= bootstrap_form_for(search) do |f| %>
   <% if search.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(search.errors.count, "error") %> prohibited this search from being saved:</h2>
@@ -10,23 +10,19 @@
       </ul>
     </div>
   <% end %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Nuova Ricerca</h3>
+    </div>
+    <div class="panel-body">
+      <%= f.text_field :keyword %>
+      <%= f.text_field :zona %>
 
-  <div class="field">
-    <%= f.label :keyword %>
-    <%= f.text_field :keyword %>
+    </div>
+    <div class="panel-footer">
+      <%= f.submit %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :zona %>
-    <%= f.text_field :zona %>
-  </div>
 
-  <div class="field">
-    <%= f.label :last_run %>
-    <%= f.date_select :last_run %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+  <% end %>

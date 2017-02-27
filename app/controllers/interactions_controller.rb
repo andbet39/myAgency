@@ -1,11 +1,11 @@
 class InteractionsController < ApplicationController
-  #before_action :set_interaction, only: [:show, :edit, :update, :destroy]
-  #before_action :authenticate_user!
+  before_action :authenticate_user!
+  before_action :set_interaction, only: [:show, :edit, :update, :destroy]
 
   # GET /interactions
   # GET /interactions.json
   def index
-    @interactions = Interaction.all
+    @interactions = Interaction.where(:user_id => current_user.id)
   end
 
   # GET /interactions/1
@@ -26,7 +26,7 @@ class InteractionsController < ApplicationController
   # POST /interactions.json
   def create
     @interaction = Interaction.new(interaction_params)
-
+    @interaction.user = current_user
     respond_to do |format|
       if @interaction.save
         format.html { redirect_to @interaction, notice: 'Interaction was successfully created.' }

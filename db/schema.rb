@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170224163320) do
+ActiveRecord::Schema.define(version: 20170225075749) do
 
   create_table "interactions", force: :cascade do |t|
     t.string   "inttype"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20170224163320) do
     t.datetime "updated_at",                  null: false
     t.boolean  "favourite",   default: false
     t.boolean  "isnew"
+    t.integer  "user_id"
   end
 
   create_table "search_results", force: :cascade do |t|
@@ -60,6 +61,7 @@ ActiveRecord::Schema.define(version: 20170224163320) do
     t.date     "last_run"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,8 +1,9 @@
 class Api::ListingsController < ApplicationController
+  before_action :authenticate_user!
 
 
   def getListingForSearch
-    search  = Search.find(params['search_id'])
+    search  = Search.where(:id => params['search_id']).where(:user_id => current_user.id).first
     render json:search.listings
   end
 

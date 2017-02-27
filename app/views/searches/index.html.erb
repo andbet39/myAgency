@@ -14,7 +14,6 @@
           <th></th>
           <th></th>
           <th></th>
-          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -25,7 +24,6 @@
             <td><%= search.listings.count() %>
             <td><%= link_to 'Annunci', results_path(:search_id => search.id) %></td>
             <td><%= link_to 'Esegui', porta_portese_run_search_path(:search_id => search.id) %></td>
-            <td><%= link_to 'Show', search %></td>
             <td><%= link_to 'Edit', edit_search_path(search) %></td>
             <td><%= link_to 'Destroy', search, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>

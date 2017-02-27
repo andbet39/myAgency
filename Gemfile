@@ -48,6 +48,8 @@ gem 'webpack-rails'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem "font-awesome-rails"
 gem 'rails_bootstrap_navbar'
+gem 'bootstrap_form'
+
 
 
 group :development, :test do

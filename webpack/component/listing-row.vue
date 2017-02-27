@@ -32,7 +32,7 @@ export default {
         return (this.listing.price / this.listing.mt)
       },
       interactionUrl: function(){
-        return ('/my_interaction/new?listing_id='+this.listing.id+'&type=Tel');
+        return ('/my_interaction/new?listing_id='+this.listing.id+'&inttype=Tel');
       },
       showlink: function(){
         return ('/listings/'+this.listing.id);

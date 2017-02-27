@@ -1,12 +1,12 @@
 class SearchesController < ApplicationController
   before_action :set_search, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /searches
   # GET /searches.json
   def index
-    @searches = Search.all
+    @searches = Search.where(:user_id => current_user.id )
   end
-
   # GET /searches/1
   # GET /searches/1.json
   def show
@@ -25,7 +25,7 @@ class SearchesController < ApplicationController
   # POST /searches.json
   def create
     @search = Search.new(search_params)
-
+    @search.user = current_user
     respond_to do |format|
       if @search.save
         format.html { redirect_to @search, notice: 'Search was successfully created.' }

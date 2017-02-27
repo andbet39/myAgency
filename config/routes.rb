@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root "searches#index"
+
   get 'my_interaction/index'
   get 'my_interaction/new'
   post 'my_interaction/create'

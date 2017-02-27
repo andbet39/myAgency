@@ -1,71 +1,78 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @listing.title %>
-</p>
+<h2><%= @listing.title %></h2>
 
-<p>
-  <strong>Link:</strong>
-  <%= @listing.link %>
-</p>
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Contact Info</h3>
+      </div>
+      <div class="panel-body">
+        <table class="table">
+          <tr>
+            <td>Link</td>
+            <td><a href="<%= @listing.link %>">Link</a></td>
+          </tr>
+          <tr>
+            <td>Tel</td>
+            <td><%= @listing.tel %></td>
+          </tr>
+          <tr>
+            <td>Tel 2</td>
+            <td><%= @listing.tel2 %></td>
+          </tr>
+          <tr>
+            <td>Email</td>
+            <td><%= @listing.email %></td>
+          </tr>
+        </table>
 
-<p>
-  <strong>Tel:</strong>
-  <%= @listing.tel %>
-</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Property Info</h3>
+      </div>
+      <div class="panel-body">
+        <table class="table">
+          <tr>
+            <td>Mt</td>
+            <td><%= @listing.mt %></td>
+          </tr>
+          <tr>
+            <td>Prezzo</td>
+            <td><%= @listing.price %></td>
+          </tr>
+          <tr>
+            <td>Origine</td>
+            <td><%= @listing.origin %></td>
+          </tr>
+          <tr>
+            <td>Zona</td>
+            <td><%= @listing.zona %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Tel2:</strong>
-  <%= @listing.tel2 %>
-</p>
+<div class="row">
+    <div class="col-md-12">
+      <h3>Descrizione</h3>
+      <%= @listing.description %>
+    </div>
+</div>
 
-<p>
-  <strong>Email:</strong>
-  <%= @listing.email %>
-</p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @listing.description %>
-</p>
-
-<p>
-  <strong>Insert date:</strong>
-  <%= @listing.insert_date %>
-</p>
-
-<p>
-  <strong>Mt:</strong>
-  <%= @listing.mt %>
-</p>
-
-<p>
-  <strong>Zona:</strong>
-  <%= @listing.zona %>
-</p>
-
-<p>
-  <strong>Id annuncio:</strong>
-  <%= @listing.id_annuncio %>
-</p>
-
-<p>
-  <strong>Origin:</strong>
-  <%= @listing.origin %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @listing.price %>
-</p>
-
-<h3>Interazioni</h3>
-<a href="/my_interaction/new?listing_id=<%= @listing.id %>&inttype=Tel"> <button class="btn btn-success">Nuova</button></a>
-  <table class="table table-condensed">
+<h3>Interazioni <a href="/my_interaction/new?listing_id=<%= @listing.id %>&inttype=Tel"> <button class="btn btn-success">Nuova</button></a></h3>
+  <table class="table table-bordered">
     <thead>
       <th>Id</th>
-      <th>Created</th>
+      <th>Creata</th>
       <th>Nome</th>
       <th>Tipo</th>
       <th>Voto</th>
@@ -75,7 +82,7 @@
 
       <tr>
         <td>  <%= interaction.id %></td>
-        <td>  <%= interaction.created_at %></td>
+        <td>  <%= interaction.created_at.to_formatted_s(:long) %></td>
         <td>  <%= interaction.name %></td>
         <td>  <%= interaction.inttype %></td>
         <td>  <%= interaction.vote %></td>

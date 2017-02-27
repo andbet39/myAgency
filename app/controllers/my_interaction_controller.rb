@@ -1,12 +1,12 @@
 class MyInteractionController < ApplicationController
   skip_before_action :verify_authenticity_token
+  before_action :authenticate_user!
 
   def index
   end
 
   def new
     @listing = Listing.find(params['listing_id'])
-
     @inttype = params['inttype']
 
   end
@@ -15,6 +15,7 @@ class MyInteractionController < ApplicationController
 
     listing = Listing.find(params['listing_id'])
     @interaction = Interaction.new
+    @interaction.user = current_user
     @interaction.note = params['note']
     @interaction.name = params['name']
     @interaction.interest = params['interest']

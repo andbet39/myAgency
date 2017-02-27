@@ -11,6 +11,7 @@ class Annuncio
 #http://www.portaportese.it/rubriche/Immobiliare/Ville_e_appartamenti_(Roma)/Prati-Borgo-Mazzini/m-no-agenzia-keyWno+agenzia?to=ordinaADis&zoomstart=14&latstart=41.91036&lngstart=12.45542
 #http://www.portaportese.it/rubriche/Immobiliare/Ville_e_appartamenti_(Roma)/Prati-Borgo-Mazzini/m-no-Agenzia-keyWno-Agenzia
 class PortaPorteseController < ApplicationController
+    before_action :authenticate_user!
 
 
   def index
@@ -42,7 +43,7 @@ class PortaPorteseController < ApplicationController
     annunci = doc.css('.risultato')
     annunci.each do |annuncio|
 
-      old_annuncio = Listing.where(id_annuncio: annuncio['name']).first
+      old_annuncio = Listing.where(id_annuncio: annuncio['name']).where(:user_id => current_user.id).first
       if  old_annuncio != nil
           listing = old_annuncio
           listing.isnew = false
@@ -53,6 +54,7 @@ class PortaPorteseController < ApplicationController
           listing.isnew  = true
           logger.info('New annuncio : '+  annuncio['name'])
           listing.insert_date = Time.now
+          listing.user = current_user
       end
 
       title  = annuncio.css('h2.ris-title>a').text
