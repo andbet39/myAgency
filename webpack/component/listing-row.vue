@@ -9,8 +9,8 @@
     <td>{{listing.tel}}</td>
     <td><a :href="listing.link">Link</a></td>
     <td>{{listing.origin}}</td>
-    <td><fav-button :is_fav="listing.favourite"  @togglefav="togglefav"></fav-button></td>
-    <td><a v-bind:href="interactionUrl"><button class="btn btn-sm btn-success" ><i class="fa fa-phone" aria-hidden="true"></i></button></a></td>
+     <td><fav-button :is_fav="listing.favourite"  @togglefav="togglefav"></fav-button></td>
+    <td><a v-bind:href="interactionUrl"><button class="btn btn-sm btn-success" >{{listing.interactions.length}} <i class="fa fa-phone" aria-hidden="true"></i></button></a></td>
   </tr>
 </template>
 

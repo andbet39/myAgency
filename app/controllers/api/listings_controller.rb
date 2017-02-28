@@ -4,15 +4,16 @@ class Api::ListingsController < ApplicationController
 
   def getListingForSearch
     search  = Search.where(:id => params['search_id']).where(:user_id => current_user.id).first
-    render json:search.listings
+    @listings = search.listings
+    render :template => 'listings/index.json'
   end
 
 
   def togglefav
-    listing = Listing.find(params['listing_id'])
-    listing.favourite = !listing.favourite
-    listing.save!
+    @listing = Listing.find(params['listing_id'])
+    @listing.favourite = !@listing.favourite
+    @listing.save!
 
-    render json:listing.favourite
+    render :template => 'listings/show.json'
   end
 end

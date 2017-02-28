@@ -63,10 +63,10 @@ var config = {
 if (production) {
   config.plugins.push(
     new webpack.NoErrorsPlugin(),
-    new webpack.optimize.UglifyJsPlugin({
+ /*   new webpack.optimize.UglifyJsPlugin({
       compressor: { warnings: false },
       sourceMap: false
-    }),
+    }),*/
     new webpack.DefinePlugin({
       'process.env': { NODE_ENV: JSON.stringify('production') }
     }),
