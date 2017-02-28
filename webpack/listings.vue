@@ -23,10 +23,10 @@
             <th>Tel.</th>
             <th>Link</th>
             <th>Source</th>
-            <th colspan="2">
+            <th colspan="2"></th>
           </thead>
           <tbody>
-            <listing-row v-for="listing in this.filteredListing" v-bind:listing="listing" ></listing-row>
+            <listing-row v-for="listing in this.filteredListing" v-bind:listing="listing" :key="listing.id"></listing-row>
           </tbody>
         </table>
       </div>

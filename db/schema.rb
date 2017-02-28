@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170225075749) do
+ActiveRecord::Schema.define(version: 20170228155023) do
 
   create_table "interactions", force: :cascade do |t|
     t.string   "inttype"
@@ -93,6 +93,13 @@ ActiveRecord::Schema.define(version: 20170225075749) do
     t.datetime "updated_at"
     t.index ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope"
     t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
+  end
+
+  create_table "zones", force: :cascade do |t|
+    t.string   "name"
+    t.string   "pp_url_part"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
 end

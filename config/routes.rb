@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :zones
   root "searches#index"
 
   get 'my_interaction/index'

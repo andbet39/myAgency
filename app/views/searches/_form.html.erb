@@ -16,7 +16,11 @@
     </div>
     <div class="panel-body">
       <%= f.text_field :keyword %>
-      <%= f.text_field :zona %>
+
+      <% zones_array = Zone.all.map { |zone| [zone.name, zone.pp_url_part] } %>
+      <%= f.select(:zona) do %>
+        <%= options_for_select(zones_array) %>
+      <% end %>
 
     </div>
     <div class="panel-footer">
