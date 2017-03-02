@@ -1437,6 +1437,10 @@ generate-object-property@^1.1.0:
   dependencies:
     is-property "^1.0.0"
 
+gentelella@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/gentelella/-/gentelella-1.3.0.tgz#53c4bb0671abd3a4bbb97cfd8261003b6da7c5e3"
+
 get-stream@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/get-stream/-/get-stream-3.0.0.tgz#8e943d1358dc37555054ecbe2edb05aa174ede14"

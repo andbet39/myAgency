@@ -50,6 +50,7 @@ gem "font-awesome-rails"
 gem 'rails_bootstrap_navbar'
 gem 'bootstrap_form'
 
+gem 'gentelella-rails'
 
 
 group :development, :test do

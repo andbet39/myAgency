@@ -5,46 +5,29 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag *webpack_asset_paths('application', extension: 'css') %>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
   </head>
 
-  <body >
-    <%= navbar fixed: :top do %>
-      <%= navbar_header brand: 'MyAgency', brand_link: '/' %>
-      <%= navbar_group do %>
-        <%= navbar_collapse do  %>
-             <%=  navbar_group class: 'foo', id: 'menu' do %>
-              <%=   navbar_item "Ricerche", '/searches'  %>
-              <%=   navbar_item "Annunci", '/my_listing/index' %>
-              <%=   navbar_item "Interazioni", '/interactions' %>
-             <% end %>
-        <% end %>
+  <body class="nav-md">
+    <div class="container body">
+      <% flash.each do |key, value| %>
+          <div align="center" id="flash" class="alert alert-<%= key %>"><%= value %></div>
       <% end %>
-      <%= navbar_group align: 'right' do %>
-        <% if current_user %>
-        <%= navbar_dropdown current_user.email do %>
-               <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
-        <% end %>
-        <% else %>
-        <%= navbar_item "Log In", '/users/sign_in' %>
-        <%= navbar_item "Signup", '/users/sign_up' %>
-      <% end %>
-      <% end %>
-    <% end %>
 
-    <div class="container">
+    <%= render "partials/sidenav" %>
+    <%= render "partials/topnav" %>
 
-        <%= yield %>
+    <%= yield %>
 
-    </div>
+    <%= render "partials/footer" %>
 
+    <%= javascript_include_tag 'application' %>
     <%= javascript_include_tag *webpack_asset_paths('application', extension: 'js') %>
-
     <script src="http://localhost:3808/webpack-dev-server.js"></script>
 
   </body>
-
 
 </html>

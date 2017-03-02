@@ -4,7 +4,7 @@ class Api::ListingsController < ApplicationController
 
   def getListingForSearch
     search  = Search.where(:id => params['search_id']).where(:user_id => current_user.id).first
-    @listings = search.listings
+    @listings = search.listings.order('tel DESC')
     render :template => 'listings/index.json'
   end
 

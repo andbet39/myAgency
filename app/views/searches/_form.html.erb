@@ -10,23 +10,12 @@
       </ul>
     </div>
   <% end %>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">Nuova Ricerca</h3>
-    </div>
-    <div class="panel-body">
       <%= f.text_field :keyword %>
 
-      <% zones_array = Zone.all.map { |zone| [zone.name, zone.pp_url_part] } %>
-      <%= f.select(:zona) do %>
+      <% zones_array = Zone.all.map { |zone| [zone.name, zone.id] } %>
+      <%= f.select(:zone_id) do %>
         <%= options_for_select(zones_array) %>
       <% end %>
 
-    </div>
-    <div class="panel-footer">
       <%= f.submit %>
-    </div>
-  </div>
-
-
-  <% end %>
+  <% end %> 

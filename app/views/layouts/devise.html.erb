@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MyAgency</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag *webpack_asset_paths('application', extension: 'css') %>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+
+  <body >
+  <%= yield %>
+
+  </body>
+
+</html>

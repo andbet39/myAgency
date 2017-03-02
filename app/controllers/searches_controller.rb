@@ -69,6 +69,6 @@ class SearchesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def search_params
-      params.require(:search).permit(:keyword, :zona, :last_run)
+      params.require(:search).permit(:keyword, :zona, :last_run,:zone_id)
     end
 end

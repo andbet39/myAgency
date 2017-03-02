@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'service_test/index'
+
   resources :zones
   root "searches#index"
 

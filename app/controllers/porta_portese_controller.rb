@@ -23,7 +23,7 @@ class PortaPorteseController < ApplicationController
     search = Search.find(params['search_id'])
 
     require 'open-uri'
-    url = "http://www.portaportese.it/rubriche/Immobiliare/Ville_e_appartamenti_(Roma)/"+search.zona+"/m-"+search.keyword.downcase.tr(' ','-')+"-keyW"+search.keyword.downcase.tr(' ','+')
+    url = "http://www.portaportese.it/rubriche/Immobiliare/Ville_e_appartamenti_(Roma)/"+search.zone.pp_url_part+"/m-"+search.keyword.downcase.tr(' ','-')+"-keyW"+search.keyword.downcase.tr(' ','+')
     logger.info(url)
 
     parsepage(url,search.id)

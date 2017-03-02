@@ -4,7 +4,5 @@
 @import "rails_bootstrap_forms";
 @import "dataTables/bootstrap/3/jquery.dataTables.bootstrap";
 
-
-body {
-  padding-top: 70px;
-}
+@import "gentelella";
+@import "gentelella-custom";

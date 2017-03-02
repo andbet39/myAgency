@@ -13,12 +13,15 @@ class ListingsController < ApplicationController
     @search = Search.find(params['search_id'])
     i = 0
     totpricemq = 0
-
+    @newlisting = 0
     @search.listings.each() do |lis|
 
-      if lis.price != nil && lis.mt != nil && lis.price != ""  && lis.mt != ""
+      if lis.price != nil && lis.mt != nil && lis.price != ""  && lis.mt != "" && lis.mt !=0
         pricemq = Integer(lis.price)/Integer(lis.mt)
         totpricemq = totpricemq + pricemq
+        if lis.favourite
+          @newlisting = @newlisting + 1
+        end
         i = i + 1
       end
     end

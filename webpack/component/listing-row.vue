@@ -6,7 +6,7 @@
     <td>{{listing.price | currency('€',0) }}</td>
     <td>{{listing.mt}}</td>
     <td>{{priceMq | currency('€',0) }}</td>
-    <td>{{listing.tel}}</td>
+    <td><a :href="tellink">{{listing.tel}}</a></td>
     <td><a :href="listing.link">Link</a></td>
     <td>{{listing.origin}}</td>
      <td><fav-button :is_fav="listing.favourite"  @togglefav="togglefav"></fav-button></td>
@@ -36,6 +36,9 @@ export default {
       },
       showlink: function(){
         return ('/listings/'+this.listing.id);
+      },
+      tellink:function(){
+        return('tel:'+this.listing.tel);
       }
 
     }

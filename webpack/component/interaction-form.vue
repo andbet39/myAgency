@@ -1,10 +1,6 @@
 <template>
-
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">Nuova interazione</h3>
-          </div>
-          <div class="panel-body">
+        <div class="x_panel">
+          <div class="x_content">
             <vf-form action="/my_interaction/create" method="POST" :options="formOption">
               <vf-status-bar ref="statusbar"></vf-status-bar>
               <vf-text label="Name:" required name="name" ref="name"></vf-text>
