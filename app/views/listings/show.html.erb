@@ -1,7 +1,17 @@
-<p id="notice"><%= notice %></p>
 
-<h2><%= @listing.title %></h2>
-<div class="row">
+<div class="right_col" role="main">
+
+  <div class="">
+
+    <div class="page-title">
+      <div class="title_left">
+        <h3><%= @listing.title %> </h3>
+      </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+ <div class="row">
     <div class="col-md-12">
         <div class="x_panel">
             <div class="x_content">
@@ -12,7 +22,7 @@
                                 <h3 class="panel-title">Contact Info</h3>
                             </div>
                             <div class="panel-body">
-                                <table class="table">
+                                <table class="table table-condensed">
                                     <tr>
                                         <td>Link</td>
                                         <td>
@@ -42,7 +52,7 @@
                                 <h3 class="panel-title">Property Info</h3>
                             </div>
                             <div class="panel-body">
-                                <table class="table">
+                                <table class="table table-condensed">
                                     <tr>
                                         <td>Mt</td>
                                         <td><%= @listing.mt %></td>
@@ -117,6 +127,5 @@
     </div>
 </div>
 
-<%= link_to 'Edit', edit_listing_path(@listing) %>
-|
-<%= link_to 'Back', listings_path %>
+</div>
+</div>
