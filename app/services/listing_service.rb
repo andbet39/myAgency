@@ -1,27 +1,22 @@
 class ListingService
-  def parse(search_id)
 
+  def parse_on_subito(search_id)
     search = Search.find(search_id)
-
     require 'open-uri'
     url = "http://www.subito.it/annunci-lazio/vendita/appartamenti/"+search.zone.subitourl+"&f=p"
-    Rails.logger.info(url)
     docmain = Nokogiri::HTML(open(url, {ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE}))
-
     paginator_link  = docmain.css('.number_container>div>a')
     #parso la prima pagina
-    parse_page(url,search)
-
-    
+    parse_page_subito(url,search)
     paginator_link.each() do |link|
         page =  Nokogiri::HTML(open('http://www.subito.it/'+ link['href'], {ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE}))
-        parse_page('http://www.subito.it/'+link['href'],search)
+        parse_page_subito('http://www.subito.it/'+link['href'],search)
     end
   end
 
 
 
-  def parse_page(url,search)
+  def parse_page_subito(url,search)
     doc = Nokogiri::HTML(open(url, {ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE}))
     annunci = doc.css('.item_list_inner')
 
@@ -37,21 +32,6 @@ class ListingService
       id_annuncio = pagina_annuncio.css('#listid')[0].text
       data_annuncio = pagina_annuncio.css('time')[0]['datetime']
 
-      listing = nil
-      old_annuncio = Listing.where(id_annuncio: id_annuncio).where(:user_id => search.user.id).first
-      if  old_annuncio != nil
-          listing = old_annuncio
-          listing.isnew = false
-          Rails.logger.info('Update annuncio : '+ id_annuncio)
-
-      else
-          listing = Listing.new()
-          listing.isnew  = true
-          Rails.logger.info('New annuncio : '+  id_annuncio)
-          listing.insert_date = data_annuncio
-          listing.user = search.user
-      end
-
       if pagina_annuncio.css('td.details_value')[4] != nil
           mq = pagina_annuncio.css('td.details_value')[4].text
       end
@@ -59,29 +39,119 @@ class ListingService
       if   pagina_annuncio.css('.price')[0] != nil
             prezzo =  pagina_annuncio.css('.price')[0].text
       end
+      if  pagina_annuncio.css('#adv_phone_full')[0] != nil
+          telefono  =  pagina_annuncio.css('#adv_phone_full')[0].text
+      end
 
       descrizione  = pagina_annuncio.css('.description')[0].text
 
-
-        if  pagina_annuncio.css('#adv_phone_full')[0] != nil
-            telefono  =  pagina_annuncio.css('#adv_phone_full')[0].text
-        end
-
-        listing.price = prezzo.strip.delete('.').delete('€')
-        listing.title = titolo
-        listing.link  = link_annuncio
-        listing.tel =telefono
-        listing.id_annuncio = id_annuncio
-        listing.mt  = mq
-        listing.description = descrizione
-        listing.origin  = 'Subito'
-
-        listing.save!
-
-        if  old_annuncio == nil
-            search.search_results.create(listing:listing)
-        end
+      add_listing(search,id_annuncio,data_annuncio,titolo,descrizione,prezzo,mq,telefono,"","","Subito.it",link_annuncio)
 
     end
   end
+
+  def parse_on_pp(search_id)
+
+    search = Search.find(search_id)
+    require 'open-uri'
+    url = "http://www.portaportese.it/rubriche/Immobiliare/Ville_e_appartamenti_(Roma)/"+search.zone.pp_url_part+"/m-"+search.keyword.downcase.tr(' ','-')+"-keyW"+search.keyword.downcase.tr(' ','+')
+
+    parse_page_pp(url,search)
+
+    docmain = Nokogiri::HTML(open(url, {ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE}))
+    pagine = docmain.css('.page-link')
+    pagine.each do |pagina|
+      link_pagina = "http://www.portaportese.it"+pagina['href']
+      parse_page_pp(link_pagina,search)
+    end #pagine
+
+  end
+
+
+  def parse_page_pp (url,search)
+    doc = Nokogiri::HTML(open(url, {ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE}))
+    annunci = doc.css('.risultato')
+    annunci.each do |annuncio|
+
+      title  = annuncio.css('h2.ris-title>a').text
+      link = annuncio.css('h2.ris-title>a')[0]['href']
+      tel=""
+      tel2=""
+      email=""
+      pagina_annuncio = Nokogiri::HTML(open("http://www.portaportese.it" + link, {ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE}))
+
+
+      link  = "http://www.portaportese.it"+link
+      id_annuncio = annuncio['name']
+      price = annuncio.css('.attr-prezzo').text.delete('€').delete(' ').delete('.')
+
+      mt  = annuncio.css('.attr-mq').text
+      description = pagina_annuncio.css('p.ins-testo').text
+      origin  = 'PP'
+
+      if  pagina_annuncio.css('li.mail>a')[0] != nil
+          email = pagina_annuncio.css('li.mail>a')[0]['data-contact'].delete(' ')
+      end
+      if  pagina_annuncio.css('li.tel>a')[0] != nil
+        tel = pagina_annuncio.css('li.tel>a')[0]['data-contact'].delete(' ')
+        if pagina_annuncio.css('li.tel>a').length >1
+          tel2 = pagina_annuncio.css('li.tel>a')[1]['data-contact'].delete(' ')
+        end
+      end
+
+      add_listing(search,id_annuncio,Time.now,title,description,price,mt,tel,tel2,email,"PortaPortese",link)
+    end #annunci
+  end
+
+
+
+  def add_listing(search,listing_id,listing_date,title,description,price,mq,tel,tel2,email,origin,link)
+
+    listing = nil
+    old_annuncio = Listing.where(id_annuncio: listing_id).first
+    if  old_annuncio != nil
+        listing = old_annuncio
+        listing.isnew = false
+    else
+        listing = Listing.new
+        listing.isnew  = true
+    end
+
+    listing.price = price.delete('€').delete(' ').delete('.')
+    listing.title = title
+    listing.link  = link
+    listing.tel =tel
+    listing.tel2 =tel2
+    listing.email = email
+    listing.id_annuncio = listing_id
+
+    int_mt=0
+    if mq != "" && mq != nil
+      int_mt = Integer(mq.delete('mq').strip)
+    end
+    listing.mt  = int_mt
+    listing.insert_date = listing_date
+    listing.description = description
+    listing.origin  = origin
+
+    listing.save!
+
+    sr  =  SearchResult.where(:listing_id => listing.id).where(:search_id => search.id).first
+    if sr == nil
+        search.search_results.create(listing:listing)
+        s = SearchResult.new
+        s.listing=listing
+        s.search=search
+        s.is_new = true
+        s.save!
+    else
+        sr.is_new=false
+        sr.save!
+    end
+
+  end
+
+
+
+
 end

@@ -15,11 +15,10 @@ Vue.use(ClientTable);
 Vue.use(Vue2Filters);
 Vue.use(VueForm);
 
-/*
-var app =   new Vue({
+
+var app = new Vue({
     el: '#app',
     data: {
         message: 'Hello Vue.js!',
     }
 });
-*/

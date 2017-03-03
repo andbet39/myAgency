@@ -12,7 +12,7 @@
   </head>
 
   <body class="nav-md">
-    <div class="container body">
+    <div id="app" class="container body">
       <% flash.each do |key, value| %>
           <div align="center" id="flash" class="alert alert-<%= key %>"><%= value %></div>
       <% end %>
@@ -26,6 +26,7 @@
 
     <%= javascript_include_tag 'application' %>
     <%= javascript_include_tag *webpack_asset_paths('application', extension: 'js') %>
+
     <script src="http://localhost:3808/webpack-dev-server.js"></script>
 
   </body>

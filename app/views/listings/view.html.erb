@@ -23,7 +23,7 @@
                 <div class="icon">
                     <i class="fa fa-exclamation-circle"></i>
                 </div>
-                <div class="count"><%= @newlisting %></div>
+                <div class="count"><%=  @newcount  %></div>
                 <h3>Nuovi Annunci</h3>
             </div>
         </div>
@@ -68,11 +68,15 @@
                                 <tbody>
                                     <% @search.search_results.each() do |s| %>
                                     <tr>
-                                        <td><%= s.listing.isnew %></td>
+                                        <% if s.is_new %>
+                                        <td ><i style="color:red" class="fa fa-exclamation red" aria-hidden="true"></i></td>
+                                        <% else %>
+                                          <td >-</td>
+                                        <% end %>
                                         <td><%= link_to s.listing.title , s.listing %></td>
                                         <td><%= s.listing.price %></td>
                                         <td><%= s.listing.mt %></td>
-                                        <td>0</td>
+                                        <td><%= s.listing.pricemq %></td>
                                         <td>
                                             <a href="tel:<%= s.listing.tel %>"><%= s.listing.tel %></a>
                                         </td>
