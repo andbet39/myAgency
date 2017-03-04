@@ -3,7 +3,7 @@ class ListingService
   def parse_on_subito(search_id)
     search = Search.find(search_id)
     require 'open-uri'
-    url = "http://www.subito.it/annunci-lazio/vendita/appartamenti/"+search.zone.subitourl+"&f=p"
+    url = "http://www.subito.it/annunci-lazio/vendita/appartamenti/"+search.zone.subitourl+"&f=p&q="+search.keyword.tr(" ", "+")
     docmain = Nokogiri::HTML(open(url, {ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE}))
     paginator_link  = docmain.css('.number_container>div>a')
     #parso la prima pagina
@@ -107,14 +107,11 @@ class ListingService
 
   def add_listing(search,listing_id,listing_date,title,description,price,mq,tel,tel2,email,origin,link)
 
-    listing = nil
-    old_annuncio = Listing.where(id_annuncio: listing_id).first
-    if  old_annuncio != nil
-        listing = old_annuncio
-        listing.isnew = false
-    else
+
+    listing = Listing.where(id_annuncio: listing_id).first
+    if  listing == nil
         listing = Listing.new
-        listing.isnew  = true
+        listing.isnew = true
     end
 
     listing.price = price.delete('€').delete(' ').delete('.')
@@ -134,11 +131,10 @@ class ListingService
     listing.description = description
     listing.origin  = origin
 
-    listing.save!
+    listing.save
 
     sr  =  SearchResult.where(:listing_id => listing.id).where(:search_id => search.id).first
     if sr == nil
-        search.search_results.create(listing:listing)
         s = SearchResult.new
         s.listing=listing
         s.search=search

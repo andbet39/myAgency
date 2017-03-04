@@ -1,0 +1,25 @@
+
+@mixin avatar($size) {
+    width: $size;
+    height: $size;
+    background-color: #2a3f54;
+    text-align: center;
+    border-radius: 50%;
+    display: inline-block;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+
+    .initials {
+      position: relative;
+      //top: $size*0.25;
+      font-size: $size*0.5;
+      line-height: $size*0.5;
+      color: #fff;
+      font-family: "Courier New", monospace;
+      font-weight: bold;
+    }
+}
+
+.avatar-circle      { @include avatar(100px); }
+.avatar-circle-sm   { @include avatar(30px); }
+.avatar-circle-lg   { @include avatar(250px); }

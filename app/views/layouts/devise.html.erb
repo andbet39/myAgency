@@ -1,20 +1,56 @@
+<%# views/layouts/external_pages.html.erb %>
+
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>MyAgency</title>
-    <%= csrf_meta_tags %>
+<head>
+  <title>GentelellaOnRails</title>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag *webpack_asset_paths('application', extension: 'css') %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    /*Devise flash*/
+    .alert-error {
+      background-color: #f2dede;
+      border-color: #eed3d7;
+      color: #b94a48;
+      text-align: center;
+    }
+    .alert-alert {
+      background-color: #f2dede;
+      border-color: #eed3d7;
+      color: #b94a48;
+      text-align: center;
+    }
+    .alert-notice {
+      background-color: #dff0d8;
+      border-color: #d6e9c6;
+      color: #468847;
+      text-align: left;
+    }
+  </style>
+  <%= csrf_meta_tags %>
 
-  </head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <body >
+</head>
+
+<body style="background:#F7F7F7;">
+
+<div class="container body">
+
+  <% flash.each do |key, value| %>
+      <div align="center" id="flash" class="alert alert-<%= key %>">
+        <a href="#" data-dismiss="alert" class="close">×</a>
+        <ul style="text-align: center">
+          <l>
+          <b> <%= value %>  </b>
+          </l>
+        </ul>
+      </div>
+  <% end %>
+
+
   <%= yield %>
 
-  </body>
-
-</html>
+</body>

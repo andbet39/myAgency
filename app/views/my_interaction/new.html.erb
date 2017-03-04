@@ -8,8 +8,31 @@
         <div class="clearfix"></div>
         <div class="row">
             <div class="col-md-6">
-                <interaction-form listingid="<%= @listing.id %>" inttype="<%= @inttype %>"></interaction-form>
-            </div>
+              <div class="x_panel">
+                     <div class="x_content">
+              <%= bootstrap_form_for(@interaction) do |f| %>
+                <% if @interaction.errors.any? %>
+                  <div id="error_explanation">
+                    <h2><%= pluralize(@interaction.errors.count, "error") %> prohibited this interaction from being saved:</h2>
+
+                    <ul>
+                    <% @interaction.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                    <% end %>
+                    </ul>
+                  </div>
+                <% end %>
+
+                <%= f.text_field :name, label: "Nome contatto" %>
+                <%= f.hidden_field :inttype %>
+                  <%= f.number_field :vote , label: "Interesse"%>
+                  <%= f.text_area :note , label: "Note"%>
+                  <%= f.hidden_field :listing_id %>
+                  <div class="separator"></div>
+                  <%= f.submit  "Crea Interazione" ,class:"btn btn-success"%>
+              <% end %>
+
+            </div></div></div>
             <div class="col-md-6">
                 <div class="x_panel">
                     <div class="x_heading">

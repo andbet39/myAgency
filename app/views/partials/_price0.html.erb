@@ -1,0 +1,47 @@
+<div class="col-md-6 col-sm-12 col-xs-12">
+                        <div class="pricing">
+                          <div class="title">
+                            <h2>Pro Plan</h2>
+                            <h1>5€ al mese</h1>
+                          </div>
+                          <div class="x_content">
+                            <div class="">
+                              <div class="pricing_features">
+                                <ul class="list-unstyled text-left">
+                                  <li><i class="fa fa-check text-success"></i> Nessun costo aggiuntivo</strong></li>
+                                  <li><i class="fa fa-check text-success"></i> Ricerche <strong>illimitate</strong> </li>
+                                  <li><i class="fa fa-check text-success"></i> Risultati <strong>illimitati</strong></li>
+                                  <li><i class="fa fa-check text-success"></i> Ricerca su <strong>PortaPortese</strong></li>
+                                  <li><i class="fa fa-check text-success"></i> Ricerca su <strong>Subito.it</strong></li>
+                                  <li><i class="fa fa-check text-success"></i> <strong>Supporto telefonico </strong></li>
+                                </ul>
+                              </div>
+                            </div>
+                            <div class="pricing_footer">
+                              <% if !current_user.is_pro %>
+                                  <%= form_tag("/subscription/subscription_checkout", method: "post") do %>
+                                  <input type="hidden" name="plan_id" value="1000">
+
+                                  <script
+                                      src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                      data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                                      data-amount=499
+                                      data-email = <%= current_user.email %>
+                                      data-name="MyAgency Call"
+                                      data-description="Piano Pro"
+                                      data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                                      data-locale="it"
+                                      data-currency="eur">
+                                    </script>
+                                    <% end %>
+                                <% else %>
+                                <a href="/subscription/cancel_subscription">  <button type="button" name="button">Cancella</button></a>
+
+
+                                <% end %>
+
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>

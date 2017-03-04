@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170303161050) do
+ActiveRecord::Schema.define(version: 20170304170146) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  create_table "customers", force: :cascade do |t|
+    t.string   "description"
+    t.string   "source"
+    t.string   "email"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "interactions", force: :cascade do |t|
     t.string   "inttype"
@@ -25,8 +31,8 @@ ActiveRecord::Schema.define(version: 20170303161050) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "name"
-    t.index ["listing_id"], name: "index_interactions_on_listing_id", using: :btree
-    t.index ["user_id"], name: "index_interactions_on_user_id", using: :btree
+    t.index ["listing_id"], name: "index_interactions_on_listing_id"
+    t.index ["user_id"], name: "index_interactions_on_user_id"
   end
 
   create_table "listings", force: :cascade do |t|
@@ -49,14 +55,24 @@ ActiveRecord::Schema.define(version: 20170303161050) do
     t.integer  "user_id"
   end
 
+  create_table "profiles", force: :cascade do |t|
+    t.string   "name"
+    t.string   "surname"
+    t.string   "avatarimg_url"
+    t.string   "agenzia"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "user_id"
+  end
+
   create_table "search_results", force: :cascade do |t|
     t.integer  "search_id"
     t.integer  "listing_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean  "is_new"
-    t.index ["listing_id"], name: "index_search_results_on_listing_id", using: :btree
-    t.index ["search_id"], name: "index_search_results_on_search_id", using: :btree
+    t.index ["listing_id"], name: "index_search_results_on_listing_id"
+    t.index ["search_id"], name: "index_search_results_on_search_id"
   end
 
   create_table "searches", force: :cascade do |t|
@@ -70,20 +86,23 @@ ActiveRecord::Schema.define(version: 20170303161050) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.integer  "profile_id"
+    t.boolean  "is_pro",                 default: false
+    t.string   "stripe_token"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   create_table "votes", force: :cascade do |t|
@@ -96,8 +115,8 @@ ActiveRecord::Schema.define(version: 20170303161050) do
     t.integer  "vote_weight"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope", using: :btree
-    t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope", using: :btree
+    t.index ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope"
+    t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
   end
 
   create_table "zones", force: :cascade do |t|
@@ -108,8 +127,4 @@ ActiveRecord::Schema.define(version: 20170303161050) do
     t.string   "subitourl"
   end
 
-  add_foreign_key "interactions", "listings"
-  add_foreign_key "interactions", "users"
-  add_foreign_key "search_results", "listings"
-  add_foreign_key "search_results", "searches"
 end

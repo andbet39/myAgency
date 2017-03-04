@@ -1,0 +1,21 @@
+<%= bootstrap_form_for(profile) do |f| %>
+  <% if profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+
+      <ul>
+      <% profile.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <%= f.text_field :name %>
+    <%= f.text_field :surname %>
+    <%= f.text_field :agenzia %>
+
+  <div class="actions">
+    <%= f.submit "Salva", :class => "btn btn-default submit"%>
+  </div>
+<% end %>

@@ -6,6 +6,8 @@ class MyInteractionController < ApplicationController
   end
 
   def new
+    @interaction = Interaction.new
+    @interaction.listing_id = params['listing_id']
     @listing = Listing.find(params['listing_id'])
     @inttype = params['inttype']
 

@@ -34,9 +34,7 @@
         <div class="page-title">
             <div class="title_left">
                 <h3>Annunci per
-                    <%= @search.keyword %>
-                    in zona
-                    <%= @search.zone.name %>
+                    <%= @search.keyword %> in zona <%= @search.zone.name %>
                 </h3>
             </div>
         </div>
@@ -61,7 +59,6 @@
                                       <th>Link</th>
                                       <th>Source</th>
                                       <th></th>
-                                      <th></th>
                                     </tr>
 
                                 </thead>
@@ -84,7 +81,6 @@
                                             <a href="<%= s.listing.link %>">Link</a>
                                         </td>
                                         <td><%= s.listing.origin %></td>
-                                        <td></td>
                                         <td>
                                             <a href="/my_interaction/new?listing_id=<%= s.listing.id %>&inttype=Tel">
                                                 <button class="btn btn-sm btn-success"><%= s.listing.interactions.length %>

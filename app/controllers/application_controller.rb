@@ -8,7 +8,9 @@ class ApplicationController < ActionController::Base
     if devise_controller?
       "devise"
     else
-      "application"
-    end
+
+        "application"
+      end
+     
   end
 end

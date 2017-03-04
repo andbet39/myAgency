@@ -20,9 +20,10 @@ ENV INSTALL_PATH /myAgency
 RUN mkdir -p $INSTALL_PATH
 WORKDIR $INSTALL_PATH
 
-RUN node -v
-RUN npm install -g foreman
-RUN npm install -g yarn
+#RUN node -v
+#RUN npm install -g webpack
+#RUN npm install -g foreman
+#RUN npm install -g yarn
 
 
 
@@ -32,10 +33,9 @@ COPY . .
 
 RUN bundle config build.nokogiri --use-system-libraries && bundle install
 
-RUN yarn
+#RUN yarn
 
-RUN rails db:migrate
 
 VOLUME ["$INSTALL_PATH/public"]
 
-#CMD  foreman start
+CMD  rails s

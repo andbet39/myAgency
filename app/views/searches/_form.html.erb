@@ -10,12 +10,12 @@
       </ul>
     </div>
   <% end %>
-      <%= f.text_field :keyword %>
+      <%= f.text_field :keyword , label:"Parola chiave" %>
 
       <% zones_array = Zone.all.map { |zone| [zone.name, zone.id] } %>
-      <%= f.select(:zone_id) do %>
+      <%= f.select(:zone_id)  do %>
         <%= options_for_select(zones_array) %>
       <% end %>
 
-      <%= f.submit %>
-  <% end %> 
+      <%= f.submit "Crea Ricerca", class:"btn btn-success" %>
+  <% end %>

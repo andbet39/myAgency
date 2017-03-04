@@ -10,13 +10,15 @@ default: &default
   timeout: 5000
 
 development:
-  adapter: postgresql
-  encoding: unicode
-  database: myagency
-  username: app
-  password: 26111979
-  host: postgres
-  port: 5432
+  <<: *default
+  database: db/development.sqlite3
+#  adapter: postgresql
+#  encoding: unicode
+#  database: myagency
+#  username: app
+#  password: 26111979
+#  host: localhost
+#  port: 5432
 
 #  <<: *default
 #  database: db/development.sqlite3

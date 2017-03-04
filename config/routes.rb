@@ -1,5 +1,18 @@
 Rails.application.routes.draw do
 
+  get 'subscription/new'
+
+  get 'subscription/subscription_checkout'
+
+  get 'subscription/webhook'
+
+  get 'home/index'
+
+  post 'subscription/subscription_checkout'
+  get 'subscription/cancel_subscription'
+
+
+  resources :profiles
   get 'service_test/index'
 
   resources :zones
@@ -11,8 +24,8 @@ Rails.application.routes.draw do
 
   resources :interactions
 
-  devise_for :users
-
+  devise_for :users,
+               controllers: { registrations: "registrations" }
 
   get 'my_listing/index'
 
