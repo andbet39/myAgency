@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   post 'subscription/subscription_checkout'
   get 'subscription/cancel_subscription'
+  get 'subscription/plans'
 
 
   resources :profiles

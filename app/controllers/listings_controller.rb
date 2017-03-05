@@ -10,7 +10,17 @@ class ListingsController < ApplicationController
 
 
   def view
+
     @search = Search.find(params['search_id'])
+
+    if !current_user.ispro
+      logger.info("Listing for non pro user")
+      @results = @search.search_results.limit(10)
+    else
+      logger.info("Listing for pro user")
+      @results = @search.search_results
+    end
+
 
     @newcount =   @search.search_results.where(:is_new => true).count
     i = 0

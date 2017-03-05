@@ -1,0 +1,15 @@
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Profilo utente</h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+<ul>
+  <% @plans.each do |plan| %>
+    <%= render "partials/price0",plan: plan %>
+    
+  <% end %>
+</ul>
+</div></div>

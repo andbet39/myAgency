@@ -6,6 +6,7 @@
             </div>
         </div>
         <div class="clearfix"></div>
+
         <div class="col-md-6">
             <div class="x_panel">
                 <div class="x_content">
@@ -22,8 +23,27 @@
             </div>
         </div>
         <div class="col-md-6 col-sm-12">
-          <%= render "partials/price" %>
-          <%= render "partials/price0" %>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="x_panel" >
+                  <div class="x_content">
+                      <% if current_user.ispro %>
+                          <h3>MyAgencyCall! Pro <small>scade il <%= current_user.pro_end_date.strftime("%m/%d/%Y") %></small> </h3>
+                        <% else %>
+                          <h3>MyAgencyCall! Free </h3>
+                        <% end %>
+                      </div>
+                  </div>
+            </div>
+
+          </div>
+          <div class="row">
+            <%= render "partials/price" %>
+            <% SubscriptionHelper.getplans.each do |plan| %>
+                <%= render "partials/stripeplan",plan: plan %>
+            <% end %>
+          </div>
+
         </div>
         </div>
       </div>

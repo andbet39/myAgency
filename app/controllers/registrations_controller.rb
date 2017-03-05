@@ -5,6 +5,13 @@
     # the profile.user_id field set to the user_id of the user jsut created
     if resource.save
         resource.create_profile
+        customer = Stripe::Customer.create(
+                :description => "Customer for " + resource.email ,
+                :source => params[:stripeToken],
+                :email => resource.email
+              )
+        current_user.stripe_customer_id = customer.id
+        current_user.save
     end
   end
 

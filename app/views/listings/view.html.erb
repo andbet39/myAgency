@@ -28,13 +28,20 @@
             </div>
         </div>
     </div>
+    <% if !current_user.ispro %>
+      <div class="row">
+        <div class="col-md-12">
+          <h3>Per vedere più annunci sottoscrivi il piano MyAgencyCall! Pro! dalla pagina del <%=link_to "Tuo Profilo", edit_profile_path(current_user.profile.id) %></h3>
+        </div>
+      </div>
+    <% end %>
 
     <div class="">
 
         <div class="page-title">
             <div class="title_left">
                 <h3>Annunci per
-                    <%= @search.keyword %> in zona <%= @search.zone.name %>
+                    <%= @search.keyword.strip %> in zona <%= @search.zone.name.strip %>
                 </h3>
             </div>
         </div>
@@ -63,7 +70,7 @@
 
                                 </thead>
                                 <tbody>
-                                    <% @search.search_results.each() do |s| %>
+                                    <% @results.each() do |s| %>
                                     <tr>
                                         <% if s.is_new %>
                                         <td ><i style="color:red" class="fa fa-exclamation red" aria-hidden="true"></i></td>

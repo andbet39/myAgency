@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170304170146) do
+ActiveRecord::Schema.define(version: 20170305090812) do
 
   create_table "customers", force: :cascade do |t|
     t.string   "description"
@@ -101,6 +101,8 @@ ActiveRecord::Schema.define(version: 20170304170146) do
     t.integer  "profile_id"
     t.boolean  "is_pro",                 default: false
     t.string   "stripe_token"
+    t.datetime "pro_end_date"
+    t.string   "stripe_customer_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

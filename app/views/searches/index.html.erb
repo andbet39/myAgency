@@ -8,7 +8,13 @@
          </div>
 
          <div class="clearfix"></div>
-
+         <% if !current_user.ispro %>
+           <div class="row">
+             <div class="col-md-12">
+               <h3>Per creare più di 2 ricerche sottoscrivi il piano MyAgencyCall! Pro! dalla pagina del <%=link_to "Tuo Profilo", edit_profile_path(current_user.profile.id) %></h3>
+             </div>
+           </div>
+         <% end %>
          <div class="row">
            <div class="col-md-12">
              <div class="x_panel">

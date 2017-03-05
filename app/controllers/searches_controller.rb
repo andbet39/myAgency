@@ -14,7 +14,15 @@ class SearchesController < ApplicationController
 
   # GET /searches/new
   def new
-    @search = Search.new
+    if !current_user.ispro
+      c  = Search.where(:user_id => current_user.id).count
+      if c > 1
+        flash[:notice] = "Attiva il piano MyAgencyCall! Pro! per creare altre ricerche!"
+        redirect_to edit_profile_path(current_user.profile.id)
+      end
+    end
+      @search = Search.new
+
   end
 
   # GET /searches/1/edit
