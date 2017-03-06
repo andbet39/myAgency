@@ -18,4 +18,5 @@
 //= require paper/paper-dashboard
 //= require bootstrap_notify
 //= require jquery-bar-rating/jquery.barrating.min
+//= require introjs/intro.min
 //= require_tree .
