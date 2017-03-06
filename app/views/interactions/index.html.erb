@@ -9,12 +9,11 @@
                     <table class="table table-bordered table-striped" id="interaction-t">
                         <thead>
                             <tr>
-                                <th>Created</th>
-                                <th>Type</th>
-                                <th>Vote</th>
-                                <th>Interest</th>
+                                <th>Creata il</th>
+                                <th>Tipo</th>
+                                <th>Voto</th>
                                 <th>Note</th>
-                                <th>Listing</th>
+                                <th>Annuncio</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -25,7 +24,6 @@
                                 <td><%= interaction.created_at.to_formatted_s(:long) %></td>
                                 <td><%= interaction.inttype %></td>
                                 <td><%= interaction.vote %></td>
-                                <td><%= interaction.interest %></td>
                                 <td><%= interaction.note %></td>
                                 <td><%= link_to('Annuncio' , interaction.listing )%></td>
                                 <td>

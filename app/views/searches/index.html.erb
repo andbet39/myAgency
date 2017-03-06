@@ -21,11 +21,11 @@
                 <table class="table dataTable table-striped table-bordered" id="search-table">
                   <thead>
                     <tr>
-                      <th>Keyword</th>
+                      <th>Parola Chiave</th>
                       <th>Zona</th>
                       <th>Annunci</th>
                       <th></th>
-                      
+
                      </tr>
                   </thead>
                   <tbody>
@@ -34,7 +34,7 @@
                         <td><%= search.keyword %></td>
                         <td><%= search.zone.name %></td>
                          <td><%= link_to search.listings.count(), results_path(:search_id => search.id) %></td>
-                        <td><%= link_to ('<i class="fa fa-cogs"></i>').html_safe, porta_portese_run_search_path(:search_id => search.id),class:"btn btn-simple btn-success btn-icon like" %>
+                        <td><%= link_to ('<i class="fa fa-cogs"></i> Esegui').html_safe, porta_portese_run_search_path(:search_id => search.id),class:"btn btn-simple btn-success btn-icon like" %>
                          <%= link_to ('<i class="fa fa-edit"></i>').html_safe, edit_search_path(search) ,class:"btn btn-simple btn-info btn-icon like" %>
                          <%= link_to ('<i class="fa fa-trash-o"></i>').html_safe, search, method: :delete, data: { confirm: 'Are you sure?' } ,class:"btn btn-simple btn-danger btn-icon like"%></td>
                       </tr>

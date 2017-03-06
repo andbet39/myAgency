@@ -6,13 +6,13 @@ class ListingService
     url = "http://www.subito.it/annunci-lazio/vendita/appartamenti/"+search.zone.subitourl+"&f=p&q="+search.keyword.tr(" ", "+")
     Rails.logger.info(url)
     begin
-    docmain = Nokogiri::HTML(open(url, {ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE}))
-    paginator_link  = docmain.css('.number_container>div>a')
-    #parso la prima pagina
-    parse_page_subito(url,search)
-    paginator_link.each() do |link|
-        page =  Nokogiri::HTML(open('http://www.subito.it/'+ link['href'], {ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE}))
-        parse_page_subito('http://www.subito.it/'+link['href'],search)
+      docmain = Nokogiri::HTML(open(url, {ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE}))
+      paginator_link  = docmain.css('.number_container>div>a')
+      #parso la prima pagina
+      parse_page_subito(url,search)
+      paginator_link.each() do |link|
+      page =  Nokogiri::HTML(open('http://www.subito.it/'+ link['href'], {ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE}))
+      parse_page_subito('http://www.subito.it/'+link['href'],search)
     end
     rescue OpenURI::HTTPError => the_error
       the_status = the_error.io.status[0] # => 3xx, 4xx, or 5xx
