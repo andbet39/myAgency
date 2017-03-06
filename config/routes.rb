@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   get 'subscription/subscription_checkout'
 
-  get 'subscription/webhook'
+  post 'subscription/webhook'
 
   get 'home/index'
 
