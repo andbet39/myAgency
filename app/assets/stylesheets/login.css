@@ -1,0 +1,157 @@
+wrapper {
+  position: relative;
+  top: 0;
+  height: 100vh;
+}
+.wrapper.wrapper-full-page {
+  height: auto;
+  min-height: 100vh;
+}
+
+.full-page:after, .full-page:before {
+  display: block;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+.full-page:after {
+  background: #5e5e5e;
+  z-index: 3;
+  opacity: 1;
+}
+.full-page > .content,
+.full-page > .footer {
+  position: relative;
+  z-index: 4;
+}
+.full-page > .content {
+  min-height: calc(100vh - 70px);
+}
+.full-page .full-page-background {
+  position: absolute;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  display: block;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  background-position: center center;
+}
+.full-page[data-image]:after, .full-page.has-image:after {
+  opacity: .7;
+}
+.full-page[data-color="blue"]:after {
+  background-color: rgba(96, 133, 134, 0.7);
+}
+.full-page[data-color="azure"]:after {
+  background-color: rgba(68, 160, 185, 0.7);
+}
+.full-page[data-color="green"]:after {
+  background-color: rgba(87, 178, 127, 0.7);
+}
+.full-page[data-color="orange"]:after {
+  background-color: rgba(240, 169, 21, 0.7);
+}
+.full-page[data-color="red"]:after {
+  background-color: rgba(205, 71, 19, 0.7);
+}
+.full-page .footer nav > ul a:not(.btn),
+.full-page .footer .copyright,
+.full-page .footer .copyright a {
+  color: #FFFFFF;
+  font-size: 14px;
+}
+
+.login-page > .content,
+.lock-page > .content {
+  padding-top: 20vh;
+}
+
+.login-page .card, .lock-page .card {
+  box-shadow: 0 25px 30px -13px rgba(40, 40, 40, 0.4);
+  border-radius: 6px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+.login-page .card .header, .lock-page .card .header {
+  text-align: center;
+}
+.login-page .card .header .title, .lock-page .card .header .title {
+  color: #66615b;
+  margin-bottom: 20px;
+}
+.login-page .card label, .lock-page .card label {
+  color: #66615b;
+}
+.login-page .card .btn-wd, .lock-page .card .btn-wd {
+  min-width: 180px;
+}
+.login-page .card .footer, .lock-page .card .footer {
+  padding-top: 20px;
+}
+.login-page .card .footer .forgot, .lock-page .card .footer .forgot {
+  padding: 20px 0px 0px;
+}
+
+.lock-page .card {
+  text-align: center;
+  width: 300px;
+  margin: 30px auto 0;
+  padding: 30px;
+  position: absolute;
+  left: 50%;
+  margin-left: -150px;
+  display: block;
+}
+.lock-page .card .author {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+.lock-page .card .author img {
+  width: 100%;
+}
+.lock-page .card h4 {
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+
+.register-page .header-text {
+  text-align: center;
+  padding: 60px 0 40px;
+}
+.register-page .header-text h4 {
+  margin-top: 10px;
+}
+.register-page .header-text hr {
+  opacity: .3;
+  margin-top: 30px;
+}
+.register-page .media {
+  /*         color: $white-color; */
+  margin-bottom: 45px;
+}
+.register-page .media .icon {
+  float: left;
+  margin-right: 5px;
+}
+.register-page .media i {
+  font-size: 2.6em;
+}
+.register-page .media h4 {
+  margin: 0 0 5px 0;
+}
+.register-page .form-group {
+  margin-bottom: 25px;
+}
+.register-page .card .content {
+  padding-top: 0;
+  padding-bottom: 0;
+}

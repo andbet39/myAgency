@@ -5,7 +5,10 @@ class SearchesController < ApplicationController
   # GET /searches
   # GET /searches.json
   def index
+    @page_title = "Lista Ricerche"
     @searches = Search.where(:user_id => current_user.id )
+    flash[:notice] = "Attiva il piano MyAgencyCall! Pro! per creare altre ricerche!"
+
   end
   # GET /searches/1
   # GET /searches/1.json

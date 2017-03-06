@@ -36,8 +36,9 @@
 </head>
 
 <body style="background:#F7F7F7;">
+<div class="full-page login-page">
 
-<div class="container body">
+<div class="content">
 
   <% flash.each do |key, value| %>
       <div align="center" id="flash" class="alert alert-<%= key %>">
@@ -52,5 +53,7 @@
 
 
   <%= yield %>
+</div>
+</div>
 
 </body>

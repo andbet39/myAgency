@@ -36,6 +36,7 @@ class ListingsController < ApplicationController
     end
 
     @avg_pricemq = totpricemq/i
+    @title = "Annunci per " + @search.keyword + " in zona "+ @search.zone.name
 
   end
 

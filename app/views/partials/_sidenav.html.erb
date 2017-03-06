@@ -1,48 +1,43 @@
+<div class="sidebar" data-background-color="white" data-active-color="danger">
 
-<div class="main_container">
+  <!--
+  Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
+  Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
+-->
 
-  <div class="col-md-3 left_col">
-    <div class="left_col scroll-view">
+    <div class="sidebar-wrapper">
+          <div class="logo">
+              <a href="/searches" class="simple-text">
+                  MyAgency Call!
+              </a>
+          </div>
 
-      <div class="navbar nav_title" style="border: 0;">
-        <a href="index.html" class="site_title"><i class="fa fa-phone"></i> <span>MyAgency Call!</span></a>
-      </div>
-      <div class="clearfix"></div>
-
-
-      <br />
-
-      <!-- sidebar menu -->
-      <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-
-        <div class="menu_section">
-          <ul class="nav side-menu">
-            <li><a><i class="fa fa-home"></i> Ricerche <span class="fa fa-chevron-down"></span></a>
-              <ul class="nav child_menu" style="display: none">
-                <li><a href="/searches/new">Nuova</a>
-                </li>
-                <li><a href="/searches">Lista</a>
-                </li>
-              </ul>
+          <ul class="nav">
+            <li class="<%= "active" if controller.controller_name == 'profiles' %>">
+                <a href="/profiles/<%= current_user.profile.id %>/edit">
+                    <i class="fa fa-user"></i>
+                    <p>Profilo</p>
+                </a>
             </li>
-            <li><a><i class="fa fa-edit"></i> Annunci <span class="fa fa-chevron-down"></span></a>
-              <ul class="nav child_menu" style="display: none">
-                <li><a href="/my_listing/index">Lista Annunci</a>
-                </li>
-              </ul>
-            </li>
-            <li><a><i class="fa fa-desktop"></i> Interazioni <span class="fa fa-chevron-down"></span></a>
-              <ul class="nav child_menu" style="display: none">
-                <li><a href="/interactions">Lista Interazioni</a>
-                </li>
-
-              </ul>
-            </li>
+              <li class="<%= "active" if controller.controller_name == 'searches' %>">
+                  <a href="/searches">
+                      <i class="fa fa-search"></i>
+                      <p>Ricerche</p>
+                  </a>
+              </li>
+              <li class="<%= "active" if controller.controller_name == 'my_listing' %>">
+                  <a href="/my_listing/index">
+                      <i class="fa fa-edit"></i>
+                      <p>Annunci</p>
+                  </a>
+              </li>
+              <li class="<%= "active" if controller.controller_name == 'interactions' %>">
+                  <a href="/interactions">
+                      <i class="fa fa-desktop"></i>
+                      <p>Interazioni</p>
+                  </a>
+              </li>
 
           </ul>
-        </div>
-      </div>
-      <!-- /sidebar menu -->
-
     </div>
   </div>

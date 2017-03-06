@@ -1,3 +1,5 @@
 
-$('#listing_table').DataTable({
+$(document).ready(function(){
+  $('#listing_table').DataTable({
+  });
 });

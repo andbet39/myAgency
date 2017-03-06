@@ -1,0 +1,9 @@
+<% if !notice.blank? %>
+<script>
+      $(document).ready(function () {
+        $().notify({
+          message: { text: "#{notice}" }
+        }).show();
+      });
+</script>
+<% end %>

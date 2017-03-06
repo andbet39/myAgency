@@ -17,8 +17,12 @@ class User < ApplicationRecord
    end
 
    def ispro
-      if self.pro_end_date > Time.now
-        return true
+     if self.pro_end_date != nil
+        if self.pro_end_date > Time.now
+          return true
+        else
+          return false
+        end
       else
         return false
       end

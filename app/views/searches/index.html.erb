@@ -1,55 +1,50 @@
-<div class="right_col" role="main">
-   <div class="">
 
-         <div class="page-title">
-           <div class="title_left">
-             <h3>Le mie ricerche </h3>
-           </div>
+<% title "Lista Ricerche" %>
+<div class="container-fluid">
+  <% if !current_user.ispro %>
+     <div class="row">
+       <div class="col-md-12">
+         <h3>Per creare più di 2 ricerche sottoscrivi il piano MyAgencyCall! Pro! dalla pagina del <%=link_to "Tuo Profilo", edit_profile_path(current_user.profile.id) %></h3>
+       </div>
+     </div>
+   <% end %>
+   <div class="row">
+     <div class="col-md-12">
+       <a href="/searches/new"><button type="button" class="btn btn-primary btn-wd btn-fill">Nuova</button></a>
+     </div>
+   </div>
+   <br>
+   <div class="row">
+     <div class="col-md-12">
+       <div class="card">
+              <div class="content">
+                <table class="table dataTable table-striped table-bordered" id="search-table">
+                  <thead>
+                    <tr>
+                      <th>Keyword</th>
+                      <th>Zona</th>
+                      <th>Annunci</th>
+                      <th></th>
+                      
+                     </tr>
+                  </thead>
+                  <tbody>
+                    <% @searches.each do |search| %>
+                      <tr>
+                        <td><%= search.keyword %></td>
+                        <td><%= search.zone.name %></td>
+                         <td><%= link_to search.listings.count(), results_path(:search_id => search.id) %></td>
+                        <td><%= link_to ('<i class="fa fa-cogs"></i>').html_safe, porta_portese_run_search_path(:search_id => search.id),class:"btn btn-simple btn-success btn-icon like" %>
+                         <%= link_to ('<i class="fa fa-edit"></i>').html_safe, edit_search_path(search) ,class:"btn btn-simple btn-info btn-icon like" %>
+                         <%= link_to ('<i class="fa fa-trash-o"></i>').html_safe, search, method: :delete, data: { confirm: 'Are you sure?' } ,class:"btn btn-simple btn-danger btn-icon like"%></td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
          </div>
-
-         <div class="clearfix"></div>
-         <% if !current_user.ispro %>
-           <div class="row">
-             <div class="col-md-12">
-               <h3>Per creare più di 2 ricerche sottoscrivi il piano MyAgencyCall! Pro! dalla pagina del <%=link_to "Tuo Profilo", edit_profile_path(current_user.profile.id) %></h3>
-             </div>
-           </div>
-         <% end %>
-         <div class="row">
-           <div class="col-md-12">
-             <div class="x_panel">
-                    <div class="x_content">
-                      <table class="table datatable" id="search-table">
-                        <thead>
-                          <tr>
-                            <th>Keyword</th>
-                            <th>Zona</th>
-                            <th>Annunci</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <% @searches.each do |search| %>
-                            <tr>
-                              <td><%= search.keyword %></td>
-                              <td><%= search.zone.name %></td>
-                              <td><%= search.listings.count() %>
-                              <td><%= link_to 'Annunci', results_path(:search_id => search.id) %></td>
-                              <td><%= link_to 'Esegui', porta_portese_run_search_path(:search_id => search.id) %></td>
-                              <td><%= link_to 'Edit', edit_search_path(search) %></td>
-                              <td><%= link_to 'Destroy', search, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                            </tr>
-                          <% end %>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-               </div>
-             </div>
-           </div>
-        </div>
-
-<%= link_to 'New Search', new_search_path %>
+       </div>
+     </div>
+  </div>
+</div>

@@ -1,53 +1,39 @@
-<div class="">
-  <div id="wrapper">
-    <div id="login" class="animate form col-md-4 col-md-offset-4">
-      <section class="login_content">
-        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <h1>Login</h1>
-          <div>
-            <%= f.email_field :email, autofocus: true, :class => "form-control", :placeholder =>"Username",  :required => ""  %>
 
-          </div>
-          <div>
+<div class="container">
 
-            <%= f.password_field :password, autofocus: true, :class => "form-control", :placeholder =>"Password",  :required => ""  %>
+ <div class="row">
+                        <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
+                          <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                                <div class="card" data-background="color" data-color="blue">
+                                    <div class="header">
+                                        <h3 class="title">Login</h3>
+                                    </div>
+                                    <div class="content">
 
-          </div>
-
-
-            <% if devise_mapping.rememberable? -%>
-                <div class="checkbox-inline">
-                  <%= f.check_box :remember_me %>
-                  <%= f.label :remember_me %>
-                </div>
-            <% end %>
-
-
-            <div>
-
-            <%= f.submit "Log in", :class => "btn btn-default submit"%>
-
-            <a class="reset_pass" href="#">Lost your password?</a>
-          </div>
-          <div class="clearfix"></div>
-          <div class="separator">
-
-            <p class="change_link">New to site?
-              <a href="/users/sign_up" class="to_register"> Create Account </a>
-            </p>
-            <div class="clearfix"></div>
-            <br />
-            <div>
-              <h1><i class="fa fa-phone" style="font-size: 26px;"></i> MyAgency Call!</h1>
-
-              <p>©2017 All Rights Reserved. Privacy and Terms</p>
-                </div>
-          </div>
+                                        <div class="form-group">
+                                          <%= f.email_field :email, autofocus: true, :class => "form-control", :placeholder =>"Username",  :required => ""  %>
+                                          </div>
+                                        <div class="form-group">
+                                          <%= f.password_field :password, autofocus: true, :class => "form-control", :placeholder =>"Password",  :required => ""  %>
+      </div>  <% if devise_mapping.rememberable? -%>
+            <div class="checkbox-inline">
+              <%= f.check_box :remember_me %>
+            </div>
         <% end %>
-        <!-- form -->
-      </section>
-      <!-- content -->
-    </div>
+                                    </div>
+                                    <div class="footer text-center">
+                                      <%= f.submit "Log in", :class => "btn btn-fill btn-wd"%>
+
+                                         <div class="forgot">
+                                            <a href="#pablo">Forgot your password?</a>
+                                        </div>
+                                        <br>
+                                    </div>
+                                </div>
+                            <% end %>
+                        </div>
+                    </div>
+
+
 
   </div>
-</div>

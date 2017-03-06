@@ -1,25 +1,13 @@
-<div class="right_col" role="main">
-    <div class="">
-
-        <div class="page-title">
-            <div class="title_left">
-                <h3>Nuova ricerca
-                </h3>
-            </div>
-        </div>
-
-        <div class="clearfix"></div>
+<% title "Nuova Ricerca" %>
+<div class="container-fluid" role="main">
 
         <div class="row">
             <div class="col-md-6">
-                <div class="x_panel">
-                    <div class="x_content">
+                <div class="card">
+                    <div class="content">
                         <%= render 'form', search: @search %>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-<%= link_to 'Back', searches_path %>

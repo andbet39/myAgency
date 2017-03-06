@@ -1,3 +1,4 @@
-
-$('.datatable').DataTable({
+$(document).ready(function(){
+  $('#search-table').DataTable({
+  });
 });

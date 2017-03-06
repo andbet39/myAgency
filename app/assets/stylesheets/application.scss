@@ -1,9 +1,19 @@
+
+$data-background-color : black ;
+
+
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome";
 @import "rails_bootstrap_forms";
-@import "dataTables/bootstrap/3/jquery.dataTables.bootstrap";
+//@import "dataTables/bootstrap/3/jquery.dataTables.bootstrap";
 @import "avatar_style";
-
-@import "gentelella";
-@import "gentelella-custom";
+@import "paper/paper-dashboard";
+@import "bootstrap_notify";
+@import "datat";
+@import "paper/themify-icons";
+@import "login";
+th {
+  font-size: 1.25em;
+}
