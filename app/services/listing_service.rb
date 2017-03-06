@@ -4,6 +4,8 @@ class ListingService
     search = Search.find(search_id)
     require 'open-uri'
     url = "http://www.subito.it/annunci-lazio/vendita/appartamenti/"+search.zone.subitourl+"&f=p&q="+search.keyword.tr(" ", "+")
+    Rails.logger.info(url)
+    begin
     docmain = Nokogiri::HTML(open(url, {ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE}))
     paginator_link  = docmain.css('.number_container>div>a')
     #parso la prima pagina
@@ -12,11 +14,16 @@ class ListingService
         page =  Nokogiri::HTML(open('http://www.subito.it/'+ link['href'], {ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE}))
         parse_page_subito('http://www.subito.it/'+link['href'],search)
     end
+    rescue OpenURI::HTTPError => the_error
+      the_status = the_error.io.status[0] # => 3xx, 4xx, or 5xx
+      puts "Whoops got a bad status code #{the_error.message}"
+    end
   end
 
 
 
   def parse_page_subito(url,search)
+    begin
     doc = Nokogiri::HTML(open(url, {ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE}))
     annunci = doc.css('.item_list_inner')
 
@@ -48,6 +55,10 @@ class ListingService
       add_listing(search,id_annuncio,data_annuncio,titolo,descrizione,prezzo,mq,telefono,"","","Subito.it",link_annuncio)
 
     end
+    rescue OpenURI::HTTPError => the_error
+      the_status = the_error.io.status[0] # => 3xx, 4xx, or 5xx
+      puts "Whoops got a bad status code #{the_error.message}"
+    end
   end
 
   def parse_on_pp(search_id)
@@ -55,52 +66,65 @@ class ListingService
     search = Search.find(search_id)
     require 'open-uri'
     url = "http://www.portaportese.it/rubriche/Immobiliare/Ville_e_appartamenti_(Roma)/"+search.zone.pp_url_part+"/m-"+search.keyword.downcase.tr(' ','-')+"-keyW"+search.keyword.downcase.tr(' ','+')
-
+    Rails.logger.info(url)
     parse_page_pp(url,search)
 
-    docmain = Nokogiri::HTML(open(url, {ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE}))
-    pagine = docmain.css('.page-link')
-    pagine.each do |pagina|
-      link_pagina = "http://www.portaportese.it"+pagina['href']
-      parse_page_pp(link_pagina,search)
-    end #pagine
+    begin
+      docmain = Nokogiri::HTML(open(url, {ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE}))
+      pagine = docmain.css('.page-link')
+      pagine.each do |pagina|
+        link_pagina = "http://www.portaportese.it"+pagina['href']
+        parse_page_pp(link_pagina,search)
+      end #pagine
+    rescue OpenURI::HTTPError => the_error
+      the_status = the_error.io.status[0] # => 3xx, 4xx, or 5xx
+      puts "Whoops got a bad status code #{the_error.message}"
+    end
+
 
   end
 
 
   def parse_page_pp (url,search)
-    doc = Nokogiri::HTML(open(url, {ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE}))
-    annunci = doc.css('.risultato')
-    annunci.each do |annuncio|
+      begin
+        doc = Nokogiri::HTML(open(url, {ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE}))
 
-      title  = annuncio.css('h2.ris-title>a').text
-      link = annuncio.css('h2.ris-title>a')[0]['href']
-      tel=""
-      tel2=""
-      email=""
-      pagina_annuncio = Nokogiri::HTML(open("http://www.portaportese.it" + link, {ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE}))
+        annunci = doc.css('.risultato')
+        annunci.each do |annuncio|
+
+          title  = annuncio.css('h2.ris-title>a').text
+          link = annuncio.css('h2.ris-title>a')[0]['href']
+          tel=""
+          tel2=""
+          email=""
+          pagina_annuncio = Nokogiri::HTML(open("http://www.portaportese.it" + link, {ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE}))
 
 
-      link  = "http://www.portaportese.it"+link
-      id_annuncio = annuncio['name']
-      price = annuncio.css('.attr-prezzo').text.delete('€').delete(' ').delete('.')
+          link  = "http://www.portaportese.it"+link
+          id_annuncio = annuncio['name']
+          price = annuncio.css('.attr-prezzo').text.delete('€').delete(' ').delete('.')
 
-      mt  = annuncio.css('.attr-mq').text
-      description = pagina_annuncio.css('p.ins-testo').text
-      origin  = 'PP'
+          mt  = annuncio.css('.attr-mq').text
+          description = pagina_annuncio.css('p.ins-testo').text
+          origin  = 'PP'
 
-      if  pagina_annuncio.css('li.mail>a')[0] != nil
-          email = pagina_annuncio.css('li.mail>a')[0]['data-contact'].delete(' ')
+          if  pagina_annuncio.css('li.mail>a')[0] != nil
+              email = pagina_annuncio.css('li.mail>a')[0]['data-contact'].delete(' ')
+          end
+          if  pagina_annuncio.css('li.tel>a')[0] != nil
+            tel = pagina_annuncio.css('li.tel>a')[0]['data-contact'].delete(' ')
+            if pagina_annuncio.css('li.tel>a').length >1
+              tel2 = pagina_annuncio.css('li.tel>a')[1]['data-contact'].delete(' ')
+            end
+          end
+
+          add_listing(search,id_annuncio,Time.now,title,description,price,mt,tel,tel2,email,"PortaPortese",link)
+        end #annunci
+      rescue OpenURI::HTTPError => the_error
+        the_status = the_error.io.status[0] # => 3xx, 4xx, or 5xx
+        puts "Whoops got a bad status code #{the_error.message}"
       end
-      if  pagina_annuncio.css('li.tel>a')[0] != nil
-        tel = pagina_annuncio.css('li.tel>a')[0]['data-contact'].delete(' ')
-        if pagina_annuncio.css('li.tel>a').length >1
-          tel2 = pagina_annuncio.css('li.tel>a')[1]['data-contact'].delete(' ')
-        end
-      end
 
-      add_listing(search,id_annuncio,Time.now,title,description,price,mt,tel,tel2,email,"PortaPortese",link)
-    end #annunci
   end
 
 
