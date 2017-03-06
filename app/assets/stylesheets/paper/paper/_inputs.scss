@@ -3,37 +3,37 @@
 }
 .form-control:-moz-placeholder{
    @include placeholder($medium-gray,1);
-}  
+}
 .form-control::-webkit-input-placeholder{
-   @include placeholder($medium-gray,1); 
-} 
+   @include placeholder($medium-gray,1);
+}
 .form-control:-ms-input-placeholder{
    @include placeholder($medium-gray,1);
 }
 
 .form-control {
     background-color: $gray-input-bg;
-    border: medium none;
+  //  border: medium none;
     border-radius: $border-radius-base;
     color: $font-color;
     font-size: $font-size-base;
     transition: background-color 0.3s ease 0s;
     @include input-size($padding-base-vertical, $padding-base-horizontal, $height-base);
     @include box-shadow(none);
-    
+
     &:focus{
            background-color: $white-bg;
            @include box-shadow(none);
-           outline: 0 !important;       
+           outline: 0 !important;
     }
-    
+
     .has-success &,
     .has-error &,
     .has-success &:focus,
     .has-error &:focus{
         @include box-shadow(none);
     }
-    
+
     .has-success &{
         background-color: $success-input-bg;
         color: $success-color;
@@ -54,7 +54,7 @@
     .has-error &:focus{
         background-color: $white-bg;
     }
-    
+
     & + .form-control-feedback{
         border-radius: $border-radius-large;
         font-size: $font-size-base;
@@ -93,8 +93,8 @@
     background-color: $gray-input-bg;
     border: medium none;
     border-radius: $border-radius-base;
-    
-    
+
+
     .has-success &,
     .has-error &{
         background-color: $white-color;
@@ -110,7 +110,7 @@
         background-color: $white-color;
     }
 }
-.border-input{ 
+.border-input{
     .input-group-addon{
         border: solid 1px $table-line-color;
     }
@@ -123,15 +123,15 @@
         background-color: $light-gray;
     }
 }
-.input-group .form-control:first-child, 
-.input-group-addon:first-child,  
-.input-group-btn:first-child > .dropdown-toggle, 
+.input-group .form-control:first-child,
+.input-group-addon:first-child,
+.input-group-btn:first-child > .dropdown-toggle,
 .input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle) {
     border-right: 0 none;
 }
-.input-group .form-control:last-child, 
-.input-group-addon:last-child,  
-.input-group-btn:last-child > .dropdown-toggle, 
+.input-group .form-control:last-child,
+.input-group-addon:last-child,
+.input-group-btn:last-child > .dropdown-toggle,
 .input-group-btn:first-child > .btn:not(:first-child) {
     border-left: 0 none;
 }
@@ -145,10 +145,10 @@
 }
 .form-control[disabled]:-moz-placeholder{
    @include placeholder($medium-gray,1);
-}  
+}
 .form-control[disabled]::-webkit-input-placeholder{
-   @include placeholder($medium-gray,1); 
-} 
+   @include placeholder($medium-gray,1);
+}
 .form-control[disabled]:-ms-input-placeholder{
    @include placeholder($medium-gray,1);
 }
@@ -168,4 +168,3 @@ textarea.form-control{
     padding: 10px 18px;
     resize: none;
 }
-

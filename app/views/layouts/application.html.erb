@@ -34,7 +34,25 @@
     <%= render "partials/footer" %>
   </div>
 
+
     <%= javascript_include_tag 'application' %>
+
+    <script>
+          $(document).ready(function () {
+              <% flash.each do |key, value| %>
+
+
+              console.log("<%= value %>");
+
+                  $.notify({
+                     	message: "<%= value %>"
+                    },{
+                     	type: "<%= (key == "notice" ? "success" : key)   %>"
+                    });
+              <% end %>
+          });
+    </script>
+
 
 </body>
 

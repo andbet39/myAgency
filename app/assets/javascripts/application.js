@@ -17,5 +17,5 @@
 //= require bootstrap-sprockets
 //= require paper/paper-dashboard
 //= require bootstrap_notify
-
+//= require jquery-bar-rating/jquery.barrating.min
 //= require_tree .

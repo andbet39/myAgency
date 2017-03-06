@@ -1,47 +1,71 @@
-<div class="col-md-6 col-sm-12 col-xs-12 card">
-                        <div class="pricing">
-                          <div class="header">
-                            <h4 class="title"><%= plan[:name] %></h2>
-                            <h2><%= Float(plan[:amount])/100.0 %>€ al mese</h1>
-                          </div>
-                          <div class="content">
-                            <div class="">
-                              <div class="pricing_features">
-                                <ul class="list-unstyled text-left">
-                                  <li><i class="fa fa-check text-success"></i> Nessun costo aggiuntivo</strong></li>
-                                  <li><i class="fa fa-check text-success"></i> Ricerche <strong>illimitate</strong> </li>
-                                  <li><i class="fa fa-check text-success"></i> Risultati <strong>illimitati</strong></li>
-                                  <li><i class="fa fa-check text-success"></i> Ricerca su <strong>PortaPortese</strong></li>
-                                  <li><i class="fa fa-check text-success"></i> Ricerca su <strong>Subito.it</strong></li>
-                                  <li><i class="fa fa-check text-success"></i> <strong>Supporto telefonico </strong></li>
-                                </ul>
-                              </div>
-                            </div>
-                            <div class="pricing_footer">
-                              <% if !current_user.ispro %>
-                                  <%= form_tag("/subscription/subscription_checkout", method: "post") do %>
-                                  <input type="hidden" name="plan_id" value=<%= plan[:id] %> >
+<div class="col-md-6 col-sm-12 col-xs-12 ">
+    <div class="card" style="height:350px"  >
+        <div class="header">
+            <h4 class="title"><%= plan[:name] %></h2>
+            <h2><%= Float(plan[:amount])/100.0 %>€ al mese</h1>
+        </div>
+        <div class="content">
+            <div class="">
+                <div class="pricing_features">
+                    <ul class="list-unstyled text-left">
+                        <li>
+                            <i class="fa fa-check text-success"></i>
+                            Nessun costo aggiuntivo</strong>
+                    </li>
+                    <li>
+                        <i class="fa fa-check text-success"></i>
+                        Ricerche
+                        <strong>illimitate</strong>
+                    </li>
+                    <li>
+                        <i class="fa fa-check text-success"></i>
+                        Risultati
+                        <strong>illimitati</strong>
+                    </li>
+                    <li>
+                        <i class="fa fa-check text-success"></i>
+                        Ricerca su
+                        <strong>PortaPortese</strong>
+                    </li>
+                    <li>
+                        <i class="fa fa-check text-success"></i>
+                        Ricerca su
+                        <strong>Subito.it</strong>
+                    </li>
+                    <li>
+                        <i class="fa fa-check text-success"></i>
+                        <strong>Supporto telefonico
+                        </strong>
+                    </li>
+                </ul>
+                <br>
+            </div>
+        </div>
+        <div class="footer">
+            <% if !current_user.ispro %>
+            <%= form_tag("/subscription/subscription_checkout", method: "post") do %>
+            <input type="hidden" name="plan_id" value=<%= plan[:id] %>>
 
-                                  <script
-                                      src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                      data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-                                      data-amount=<%= plan[:amount] %>
-                                      data-email = <%= current_user.email %>
-                                      data-name="<%= plan[:name] %>"
-                                      data-description="Piano Pro"
-                                      data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                                      data-locale="it"
-                                      data-currency="<%= plan[:currency] %>">
-                                    </script>
-                                    <% end %>
-                                <% else %>
-                                <a href="/subscription/cancel_subscription">  <button type="button" name="button">Cancella</button></a>
+            <script
+                src="https://checkout.stripe.com/checkout.js"
+                class="stripe-button"
+                data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                data-amount=<%= plan[:amount] %>
+                data-email=<%= current_user.email %>
+                data-name="<%= plan[:name] %>"
+                data-description="Piano Pro"
+                data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                data-locale="it"
+                data-currency="<%= plan[:currency] %>"></script>
+            <% end %>
+        <% else %>
+            <a href="/subscription/cancel_subscription">
+                <button class="btn btn-danger btn-fill bts-wd">Cancella</button>
+            </a>
 
+            <% end %>
 
-                                <% end %>
-
-
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+        </div>
+    </div>
+</div>
+</div>

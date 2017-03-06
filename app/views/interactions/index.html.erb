@@ -1,62 +1,45 @@
-<div class="right_col" role="main">
-        <div class="">
+<% title "Lista Interazioni" %>
 
-        <div class="page-title">
-            <div class="title_left">
-                <h3>Lista Interazioni
-                </h3>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="content">
+
+                    <table class="table table-bordered table-striped" id="interaction-t">
+                        <thead>
+                            <tr>
+                                <th>Created</th>
+                                <th>Type</th>
+                                <th>Vote</th>
+                                <th>Interest</th>
+                                <th>Note</th>
+                                <th>Listing</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <% @interactions.each do |interaction| %>
+                            <tr>
+                                <td><%= interaction.created_at.to_formatted_s(:long) %></td>
+                                <td><%= interaction.inttype %></td>
+                                <td><%= interaction.vote %></td>
+                                <td><%= interaction.interest %></td>
+                                <td><%= interaction.note %></td>
+                                <td><%= link_to('Annuncio' , interaction.listing )%></td>
+                                <td>
+                                <%= link_to ('<i class="fa fa-trash-o"></i>').html_safe, interaction, method: :delete, data: { confirm: 'Are you sure?' } ,class:"btn btn-simple btn-danger btn-icon like"%></td>
+                           </td>
+                            </tr>
+                            <% end %>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-
-        <div class="clearfix"></div>
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="x_panel">
-                    <div class="x_content">
-
-
-<table class="table table-bordered datatable" id="datatable">
-  <thead>
-    <tr>
-      <th>Created</th>
-      <th>Type</th>
-      <th>Vote</th>
-      <th>Interest</th>
-      <th>Note</th>
-      <th>Listing</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @interactions.each do |interaction| %>
-      <tr>
-        <td><%= interaction.created_at.to_formatted_s(:long) %></td>
-        <td><%= interaction.inttype %></td>
-        <td><%= interaction.vote %></td>
-        <td><%= interaction.interest %></td>
-        <td><%= interaction.note %></td>
-        <td><%= link_to('Annuncio' , interaction.listing )%></td>
-          </tr>
-    <% end %>
-  </tbody>
-</table>
+    </div>
 </div>
-</div>
-</div>
-</div>
-</div></div><br>
-
 <script type="text/javascript">
-$('.datatable').DataTable({
-// ajax: ...,
-// autoWidth: false,
-// pagingType: 'full_numbers',
-// processing: true,
-// serverSide: true,
 
-// Optional, if you want full pagination controls.
-// Check dataTables documentation to learn more about available options.
-// http://datatables.net/reference/option/pagingType
-});
 </script>

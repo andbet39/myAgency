@@ -1,49 +1,47 @@
 <% title "Profile Utente" %>
 <div class="container-fluid" role="main">
-     <div class="row">
+    <div class="row">
 
-
-       <div class="col-md-6">
-           <div class="card">
-               <div class="content">
-                 <div class="row">
-                     <div class="col-md-12">
-                         <div class="x_panel">
-                             <div class="x_content">
-                               <%= render 'form', profile: @profile %>
-                             </div>
-                         </div>
-                     </div>
-                 </div>
-               </div>
-           </div>
-       </div>
-
-
+        <div class="col-md-6">
+            <div class="card">
+              <div class="header">
+                <h4 class="title">Informazioni Utente</h4>
+              </div>
+                <div class="content">
+                  <%= render 'form', profile: @profile %>
+                </div>
+            </div>
+        </div>
 
         <div class="col-md-6 col-sm-12">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card" >
-                  <div class="content">
-                      <% if current_user.ispro %>
-                          <h3>MyAgencyCall! Pro <small>scade il <%= current_user.pro_end_date.strftime("%m/%d/%Y") %></small> </h3>
-                        <% else %>
-                          <h3>MyAgencyCall! Free </h3>
-                        <% end %>
-                      </div>
-                  </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="header">
+                          <h4 class="title">Piano attuale</h4>
+                        </div>
+                        <div class="content">
+                            <% if current_user.ispro %>
+                              <h3>MyAgencyCall! Pro
+                                  <small>scade il
+                                      <%= current_user.pro_end_date.strftime("%m/%d/%Y") %></small>
+                              </h3>
+                            <% else %>
+                              <h3>MyAgencyCall! Free
+                              </h3>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <%= render "partials/price" %>
+                <% SubscriptionHelper.getplans.each do |plan| %>
+                <%= render "partials/stripeplan",plan: plan %>
+                <% end %>
             </div>
 
-          </div>
-          <div class="row">
-            <%= render "partials/price" %>
-            <% SubscriptionHelper.getplans.each do |plan| %>
-                <%= render "partials/stripeplan",plan: plan %>
-            <% end %>
-          </div>
-
         </div>
-        </div>
-        </div>
-      </div>
+    </div>
+</div>

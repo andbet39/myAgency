@@ -1,64 +1,62 @@
-<div class="right_col" role="main">
-    <div  class="">
-        <div class="page-title">
-            <div class="title_left">
-                <h3>Nuova Interazione</h3>
+<% title "Nuova Interazione" %>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+              <div class="header">
+                  <h4 class="title" >Contatto</h4>
+              </div>
+                <div class="content">
+                    <%= bootstrap_form_for(@interaction ,:url => my_interaction_create_path) do |f| %>
+                    <% if @interaction.errors.any? %>
+                    <div id="error_explanation">
+                        <h2><%= pluralize(@interaction.errors.count, "error") %>
+                            prohibited this interaction from being saved:</h2>
+                        <ul>
+                            <% @interaction.errors.full_messages.each do |message| %>
+                            <li><%= message %></li>
+                            <% end %>
+                        </ul>
+                    </div>
+                    <% end %>
+
+                    <%= f.text_field :name, label: "Nome contatto" %>
+                    <%= f.hidden_field :inttype %>
+                    <%= f.select :vote, options_for_select(0..10), label:"Interesse" %>
+                    <%= f.text_area :note , label: "Note"%>
+                    <%= f.hidden_field :listing_id %>
+                    <div class="separator"></div>
+                    <%= f.submit  "Crea Interazione" ,class:"btn btn-success btn-fill btn-wd"%>
+                    <% end %>
+
+                </div>
             </div>
         </div>
-        <div class="clearfix"></div>
-        <div class="row">
-            <div class="col-md-6">
-              <div class="x_panel">
-                     <div class="x_content">
-              <%= bootstrap_form_for(@interaction) do |f| %>
-                <% if @interaction.errors.any? %>
-                  <div id="error_explanation">
-                    <h2><%= pluralize(@interaction.errors.count, "error") %> prohibited this interaction from being saved:</h2>
-
-                    <ul>
-                    <% @interaction.errors.full_messages.each do |message| %>
-                      <li><%= message %></li>
-                    <% end %>
-                    </ul>
-                  </div>
-                <% end %>
-
-                <%= f.text_field :name, label: "Nome contatto" %>
-                <%= f.hidden_field :inttype %>
-                  <%= f.number_field :vote , label: "Interesse"%>
-                  <%= f.text_area :note , label: "Note"%>
-                  <%= f.hidden_field :listing_id %>
-                  <div class="separator"></div>
-                  <%= f.submit  "Crea Interazione" ,class:"btn btn-success"%>
-              <% end %>
-
-            </div></div></div>
-            <div class="col-md-6">
-                <div class="x_panel">
-                    <div class="x_heading">
-                        <h3 >Dati Annuncio</h3>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="header">
+                    <h4 class="title" >Dati Annuncio</h4>
+                </div>
+                <div class="content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2><%= @listing.title %></h2>
+                        </div>
                     </div>
-                    <div class="x_content">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h2><%= @listing.title %></h2>
-                            </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <%= @listing.description %>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <%= @listing.description %>
-                            </div>
-                        </div>
+                    </div>
 
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h3><%= @listing.price %>
-                                    €</h3>
-                            </div>
-                            <div class="col-md-6">
-                                <h3><%= @listing.mt %>
-                                    mq</h3>
-                            </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3><%= @listing.price %>
+                                €</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <h3><%= @listing.mt %>
+                                mq</h3>
                         </div>
                     </div>
                 </div>

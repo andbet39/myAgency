@@ -9,26 +9,19 @@ class MyInteractionController < ApplicationController
     @interaction = Interaction.new
     @interaction.listing_id = params['listing_id']
     @listing = Listing.find(params['listing_id'])
-    @inttype = params['inttype']
+    @interaction.inttype = params['inttype']
 
   end
 
   def create
 
-    listing = Listing.find(params['listing_id'])
-    @interaction = Interaction.new
+    logger.info(params['listing_id'])
+    @interaction = Interaction.new(interaction_params)
     @interaction.user = current_user
-    @interaction.note = params['note']
-    @interaction.name = params['name']
-    @interaction.interest = params['interest']
-    @interaction.vote = params['vote']
-    @interaction.listing = listing
-    @interaction.inttype = params['inttype']
-
 
     respond_to do |format|
       if @interaction.save
-        format.html { redirect_to listing, notice: 'Interaction was successfully created.' }
+        format.html { redirect_to @interaction.listing, success: 'Interaction was successfully created.' }
         format.json { render :show, status: :created, location: @interaction }
       else
         format.html { render :new }
@@ -37,4 +30,15 @@ class MyInteractionController < ApplicationController
     end
 
   end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_interaction
+      @interaction = Interaction.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def interaction_params
+      params.require(:interaction).permit(:name,:type, :vote, :interest, :note, :listing_id, :user_id,:inttype)
+    end
 end

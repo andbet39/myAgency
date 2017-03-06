@@ -1,39 +1,35 @@
-
 <div class="container">
-
- <div class="row">
-                        <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
-                          <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-                                <div class="card" data-background="color" data-color="blue">
-                                    <div class="header">
-                                        <h3 class="title">Login</h3>
-                                    </div>
-                                    <div class="content">
-
-                                        <div class="form-group">
-                                          <%= f.email_field :email, autofocus: true, :class => "form-control", :placeholder =>"Username",  :required => ""  %>
-                                          </div>
-                                        <div class="form-group">
-                                          <%= f.password_field :password, autofocus: true, :class => "form-control", :placeholder =>"Password",  :required => ""  %>
-      </div>  <% if devise_mapping.rememberable? -%>
-            <div class="checkbox-inline">
-              <%= f.check_box :remember_me %>
-            </div>
-        <% end %>
-                                    </div>
-                                    <div class="footer text-center">
-                                      <%= f.submit "Log in", :class => "btn btn-fill btn-wd"%>
-
-                                         <div class="forgot">
-                                            <a href="#pablo">Forgot your password?</a>
-                                        </div>
-                                        <br>
-                                    </div>
-                                </div>
-                            <% end %>
-                        </div>
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
+            <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div class="card" data-background="color" data-color="blue">
+                <div class="header">
+                    <h3 class="title">Login</h3>
+                </div>
+                <div class="content">
+                    <div class="form-group">
+                        <%= f.email_field :email, autofocus: true, :class => "form-control", :placeholder =>"Username",  :required => ""  %>
                     </div>
+                    <div class="form-group">
+                        <%= f.password_field :password, autofocus: true, :class => "form-control", :placeholder =>"Password",  :required => ""  %>
+                    </div>
+                    <% if devise_mapping.rememberable? -%>
+                    <div class="checkbox-inline">
+                        <%= f.check_box :remember_me %>
+                    </div>
+                    <% end %>
+                </div>
+                <div class="footer text-center">
+                    <%= f.submit "Log in", :class => "btn btn-fill btn-wd"%>
+                    <div class="forgot">
+                      <a href="/users/sign_up">Registrati</a>
+                      <a href="#pablo">Forgot your password?</a>
+                    </div>
+                    <br>
+                </div>
+            </div>
+            <% end %>
+        </div>
+    </div>
 
-
-
-  </div>
+</div>

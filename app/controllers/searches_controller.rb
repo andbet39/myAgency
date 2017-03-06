@@ -7,8 +7,9 @@ class SearchesController < ApplicationController
   def index
     @page_title = "Lista Ricerche"
     @searches = Search.where(:user_id => current_user.id )
-    flash[:notice] = "Attiva il piano MyAgencyCall! Pro! per creare altre ricerche!"
-
+    if !current_user.ispro
+      flash.now[:warning] = "Attiva il piano MyAgencyCall! Pro! per creare altre ricerche!"
+    end
   end
   # GET /searches/1
   # GET /searches/1.json
@@ -20,7 +21,7 @@ class SearchesController < ApplicationController
     if !current_user.ispro
       c  = Search.where(:user_id => current_user.id).count
       if c > 1
-        flash[:notice] = "Attiva il piano MyAgencyCall! Pro! per creare altre ricerche!"
+        flash.now[:warning] = "Attiva il piano MyAgencyCall! Pro! per creare altre ricerche!"
         redirect_to edit_profile_path(current_user.profile.id)
       end
     end

@@ -10,12 +10,23 @@
       </ul>
     </div>
   <% end %>
+<div class="row">
+  <div class="col-md-12">
+      <%= f.text_field :name , label:"Nome"%>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <%= f.text_field :surname, label:"Cognome" %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <%= f.text_field :agenzia ,label:"Agenzia"%>
+  </div>
+</div>
 
-    <%= f.text_field :name %>
-    <%= f.text_field :surname %>
-    <%= f.text_field :agenzia %>
-
-  <div class="actions">
-    <%= f.submit "Salva", :class => "btn btn-default submit"%>
+  <div class="footer">
+    <%= f.submit "Salva", :class => "btn btn-default btn-fill submit"%>
   </div>
 <% end %>
