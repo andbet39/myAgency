@@ -13,17 +13,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
-
-<body style="background:#F7F7F7;">
+<style>
+  /*Devise flash*/
+  .alert-error {
+    background-color: #f2dede;
+    border-color: #eed3d7;
+    color: #b94a48;
+    text-align: center;
+    margin-bottom: 0px;
+  }
+  .alert-alert {
+    background-color: #f2dede;
+    border-color: #eed3d7;
+    color: #b94a48;
+    text-align: center;
+    margin-bottom: 0px;
+  }
+  .alert-notice {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #468847;
+    text-align: left;
+    margin-bottom: 0px;
+  }
+</style>
+<body>
 
   <% flash.each do |key, value| %>
-      <div align="center" id="flash" class="alert alert-<%= key %>">
-        <a href="#" data-dismiss="alert" class="close">×</a>
-        <ul style="text-align: center">
-          <l>
+      <div class="alert alert-<%= key %>">
+         <div class="container">
           <b> <%= value %>  </b>
-          </l>
-        </ul>
+        </div>
       </div>
   <% end %>
 

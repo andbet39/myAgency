@@ -1,40 +1,4 @@
-<nav class="navbar navbar-white" role="navigation-demo" id="demo-navbar">
-  <div class="container">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/">MyAgency Call!</a>
-    </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="navigation-example-2">
-      <ul class="nav navbar-nav navbar-right">
-
-        </li>
-          <% if current_user != nil %>
-            <li>
-               <a href="/searches" class="btn btn-simple">Dashboard</a>
-             </li>
-             <li>
-              <a href="/users/sign_out" class="btn btn-simple">Logout</a>
-            </li>
-          <% else %>
-            <li>
-             <a href="/users/sign_up" class="btn btn-simple">Registrati</a>
-           </li>
-           <li>
-            <a href="/users/sign_in" class="btn btn-simple">Login</a>
-          </li>
-          <%end %>
-        </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-->
-</nav>
 <div class="alert alert-danger landing-alert">
      <div class="container text-center">
          <h5>Per la fase di beta abbonamento PRO a soli 4.99€ mensili</h5>

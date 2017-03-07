@@ -14,5 +14,5 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 
-//=require home/ct-paper
 //=require home/ct-paper-checkbox
+//=require home/ct-paper
