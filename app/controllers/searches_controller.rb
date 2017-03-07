@@ -5,6 +5,7 @@ class SearchesController < ApplicationController
   # GET /searches
   # GET /searches.json
   def index
+    @has_help = true
     @page_title = "Lista Ricerche"
     @searches = Search.where(:user_id => current_user.id )
     if !current_user.ispro

@@ -1,35 +1,76 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
-            <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-            <div class="card" data-background="color" data-color="blue">
-                <div class="header">
+<nav class="navbar navbar-ct-transparent navbar-fixed-top" role="navigation-demo" id="register-navbar">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">MyAgency Call!</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navigation-example-2">
+            <ul class="nav navbar-nav navbar-right"></li>
+            <% if current_user != nil %>
+            <li>
+                <a href="/searches" class="btn btn-simple">Dashboard</a>
+            </li>
+            <li>
+                <a href="/users/sign_out" class="btn btn-simple">Logout</a>
+            </li>
+        <% else %>
+            <li>
+                <a href="/users/sign_up" class="btn btn-simple">Registrati</a>
+            </li>
+            <li>
+                <a href="/users/sign_in" class="btn btn-simple">Login</a>
+            </li>
+            <%end %>
+        </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+</div>
+<!-- /.container-->
+</nav>
+<div class="wrapper">
+<div class="register-background">
+    <div class="filter-black"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1 ">
+                <div class="register-card">
                     <h3 class="title">Login</h3>
-                </div>
-                <div class="content">
-                    <div class="form-group">
-                        <%= f.email_field :email, autofocus: true, :class => "form-control", :placeholder =>"Username",  :required => ""  %>
-                    </div>
-                    <div class="form-group">
-                        <%= f.password_field :password, autofocus: true, :class => "form-control", :placeholder =>"Password",  :required => ""  %>
-                    </div>
+                    <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+                    <%= f.email_field :email, autofocus: true, :class => "form-control", :placeholder =>"Username",  :required => ""  %>
+                    <%= f.password_field :password, autofocus: true, :class => "form-control", :placeholder =>"Password",  :required => ""  %>
                     <% if devise_mapping.rememberable? -%>
-                    <div class="checkbox-inline">
-                        <%= f.check_box :remember_me %>
-                    </div>
+
+
+                    <label class="checkbox checkbox-red" for="checkbox1">
+
+                        <input type="checkbox"  id="checkbox1" data-toggle="checkbox" name="user[remember_me]" id="user_remember_me">
+
+                          Ricordami
+
+                    </label>
+                     <% end %>
+                    <%= f.submit "Log in", :class => "btn btn-danger btn-block"%>
                     <% end %>
-                </div>
-                <div class="footer text-center">
-                    <%= f.submit "Log in", :class => "btn btn-fill btn-wd"%>
                     <div class="forgot">
-                      <a href="/users/sign_up">Registrati</a>
-                      <a href="#pablo">Forgot your password?</a>
+                        <a href="#" class="btn btn-simple btn-danger">Forgot password?</a>
                     </div>
-                    <br>
                 </div>
+
             </div>
-            <% end %>
+        </div>
+        <div class="footer register-footer text-center">
+            <h6>&copy; 2017, made with
+                <i class="fa fa-heart heart"></i>
+                by Andrea Terzani</h6>
         </div>
     </div>
-
 </div>

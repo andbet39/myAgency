@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root "home#index"
 
   get 'subscription/new'
 
@@ -17,7 +18,6 @@ Rails.application.routes.draw do
   get 'service_test/index'
 
   resources :zones
-  root "searches#index"
 
   get 'my_interaction/index'
   get 'my_interaction/new'

@@ -10,6 +10,7 @@ class ListingsController < ApplicationController
 
 
   def view
+    @has_help = true
 
     @search = Search.find(params['search_id'])
 

@@ -2,7 +2,7 @@
     <% title @title %>
     <div class="row">
         <div class="col-lg-3 col-sm-6">
-            <div class="card">
+            <div class="card" data-step="1" data-intro="Annunci trovati per la ricerca.">
                 <div class="content">
                     <div class="row">
                         <div class="col-xs-5">
@@ -21,7 +21,7 @@
             </div>
         </div>
         <div class="col-lg-3 col-sm-6">
-            <div class="card">
+            <div class="card" data-step="2" data-intro="Il prezzo medio degli annunci estratti dalla ricerca.">
                 <div class="content">
                     <div class="row">
                         <div class="col-xs-5">
@@ -41,7 +41,7 @@
             </div>
         </div>
         <div class="col-lg-3 col-sm-6">
-            <div class="card">
+            <div class="card" data-step="3" data-intro="I nuovi annunci trovati dall' ultima ricerca.">
                 <div class="content">
                     <div class="row">
                         <div class="col-xs-5">
@@ -97,7 +97,7 @@
                             <% @results.each() do |s| %>
                             <tr>
                                 <% if s.is_new %>
-                                <td >
+                                <td data-step="4" data-intro="Indica che un annuncio è nuovo" >
                                     <i style="color:red" class="fa fa-exclamation red" aria-hidden="true"></i>
                                 </td>
                             <% else %>
@@ -114,7 +114,7 @@
                                     <a href="<%= s.listing.link %>">Link</a>
                                 </td>
                                 <td><%= s.listing.origin %></td>
-                                <td>
+                                <td data-step="5" data-intro="Usa questo pulsante per creare una nuova interazione avventuta con l' inserzionista">
                                     <a href="/my_interaction/new?listing_id=<%= s.listing.id %>&inttype=Tel">
                                         <button class="btn btn-sm btn-success"><%= s.listing.interactions.length %>
                                             <i class="fa fa-phone" aria-hidden="true"></i>

@@ -16,7 +16,9 @@ class PortaPorteseController < ApplicationController
       service  = ListingService.new
       search.last_run = Time.now
       search.save!
-      service.parse_on_pp(params['search_id'])
+      if search.user.ispro
+        service.parse_on_pp(params['search_id'])
+      end
       service.parse_on_subito(params['search_id'])
     end
 

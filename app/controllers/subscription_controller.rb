@@ -1,5 +1,5 @@
 class SubscriptionController < ApplicationController
-
+  protect_from_forgery except: :webhook
 
   def new
   end
