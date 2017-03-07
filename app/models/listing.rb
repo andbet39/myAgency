@@ -13,4 +13,5 @@ class Listing < ApplicationRecord
       return p
   end
 
+
 end
