@@ -16,3 +16,4 @@
 
 //=require home/ct-paper-checkbox
 //=require home/ct-paper
+//=require_tree .
