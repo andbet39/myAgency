@@ -13,7 +13,7 @@ class PortaPorteseController < ApplicationController
     logger.info( Time.now.utc - 2.hours)
     if search.last_run != nil && search.last_run > (Time.now.utc - 2.hours)
 
-      flash.now[:warning] = "Non è possibile eseguire la stessa ricerca prima di due ore!"
+      flash.now[:notice] = "Non è possibile eseguire la stessa ricerca prima di due ore!"
     else
       service  = ListingService.new
       search.last_run = Time.now.utc
