@@ -121,6 +121,8 @@ GEM
     multi_json (1.12.1)
     multipart-post (2.0.0)
     mustermann (1.0.0.beta2)
+    mysql2 (0.4.5)
+    mysql2 (0.4.5-x86-mingw32)
     nio4r (1.2.1)
     nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
@@ -229,6 +231,7 @@ DEPENDENCIES
   jquery-datatables-rails (~> 3.4.0)
   jquery-rails
   momentjs-rails
+  mysql2
   nokogiri
   puma (~> 3.0)
   rails (~> 5.0.1)
