@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  body: MyString
+  object: one
+  object_type: Object
+  notified: false
+  seen: false
+  emailed: false
+  user: one
+
+two:
+  body: MyString
+  object: two
+  object_type: Object
+  notified: false
+  seen: false
+  emailed: false
+  user: two

@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+
+
+  get 'notification/view'
+
+  mount Crono::Web, at: '/crono'
+
+
   root "home#index"
 
   get 'subscription/new'

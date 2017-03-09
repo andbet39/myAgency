@@ -19,4 +19,12 @@
 //= require bootstrap_notify
 //= require jquery-bar-rating/jquery.barrating.min
 //= require introjs/intro.min
+//= require moment
 //= require_tree .
+
+$(document).ready(function(){
+
+ $('.timestring').each(function() {
+    this.textContent = moment(this.textContent).fromNow();
+  });
+});

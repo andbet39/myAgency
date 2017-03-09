@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170308084201) do
+ActiveRecord::Schema.define(version: 20170309112635) do
+
+  create_table "crono_jobs", force: :cascade do |t|
+    t.string   "job_id",                               null: false
+    t.text     "log",               limit: 1073741823
+    t.datetime "last_performed_at"
+    t.boolean  "healthy"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.index ["job_id"], name: "index_crono_jobs_on_job_id", unique: true
+  end
 
   create_table "customers", force: :cascade do |t|
     t.string   "description"
@@ -53,6 +63,20 @@ ActiveRecord::Schema.define(version: 20170308084201) do
     t.boolean  "favourite",   default: false
     t.boolean  "isnew"
     t.integer  "user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.string   "body"
+    t.string   "object_type"
+    t.integer  "object_id"
+    t.boolean  "notified"
+    t.boolean  "seen"
+    t.boolean  "emailed"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["object_type", "object_id"], name: "index_notifications_on_object_type_and_object_id"
+    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "profiles", force: :cascade do |t|

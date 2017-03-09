@@ -39,6 +39,9 @@ class ListingsController < ApplicationController
     @avg_pricemq = totpricemq/i
     @title = "Annunci per " + @search.keyword + " in zona "+ @search.zone.name
 
+
+    NotificationService.clear_search_notification(@search.id)
+
   end
 
   # GET /listings/1

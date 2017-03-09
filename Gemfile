@@ -25,8 +25,9 @@ gem 'coffee-rails', '~> 4.2'
 # gem 'therubyracer', platforms: :ruby
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
-
-
+gem 'crono'
+gem 'haml'
+gem 'sinatra', '2.0.0.beta2', require: nil
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -45,6 +46,8 @@ gem 'bcrypt', platforms: :ruby
 
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'devise'
+gem 'momentjs-rails'
+ 
 
 gem 'nokogiri'
 gem 'jquery-datatables-rails', '~> 3.4.0'
