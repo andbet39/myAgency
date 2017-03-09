@@ -1,16 +1,67 @@
-<h2>Forgot your password?</h2>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
+<nav class="navbar navbar-ct-transparent navbar-fixed-top" role="navigation-demo" id="register-navbar">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">MyAgency Call!</a>
+        </div>
 
-<%= render "devise/shared/links" %>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navigation-example-2">
+            <ul class="nav navbar-nav navbar-right"></li>
+            <% if current_user != nil %>
+            <li>
+                <a href="/searches" class="btn btn-simple">Dashboard</a>
+            </li>
+            <li>
+                <a href="/users/sign_out" class="btn btn-simple">Logout</a>
+            </li>
+        <% else %>
+            <li>
+                <a href="/users/sign_up" class="btn btn-simple">Registrati</a>
+            </li>
+            <li>
+                <a href="/users/sign_in" class="btn btn-simple">Login</a>
+            </li>
+            <%end %>
+        </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+</div>
+<!-- /.container-->
+</nav>
+<div class="wrapper">
+<div class="register-background">
+    <div class="filter-black"></div>
+    <div class="container">
+        <div class="row">
+            <div  class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1 ">
+                <div style="height:100px;min-height:250px" class="register-card">
+                    <h3 class="title">Hai perso la Password?</h3>
+                    <%= bootstrap_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+                    <%= devise_error_messages! %>
+                    <%= f.email_field :email, autofocus: true %>
+
+                    <div class="actions">
+                      <%= f.submit "Invia Istruzioni" , :class => "btn btn-danger btn-block"%>
+                    </div>
+                    <% end %>
+                </div>
+
+            </div>
+        </div>
+        <div class="footer register-footer text-center">
+            <h6>&copy; 2017, made with
+                <i class="fa fa-heart heart"></i>
+                by Andrea Terzani</h6>
+        </div>
+    </div>
+</div>
