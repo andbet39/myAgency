@@ -31,12 +31,10 @@ test:
   database: db/test.sqlite3
 
 production:
-  adapter: mysql2
+adapter: mysql2
   encoding: utf8
   database: myagency
-  username: root
-  password: andbet39
+  username: ENV["DB_USERNAME"]
+  password: ENV["DB_PASSWORD"]
   host: 127.0.0.1
   port: 3306
-#  <<: *default
-#  database: db/production.sqlite3
