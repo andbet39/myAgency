@@ -1,5 +1,5 @@
 #! /usr/bin/env python
-import re, fileinput, tempfile
+import re, fileinput
 from optparse import OptionParser
 
 
@@ -70,55 +70,17 @@ use {d};\n'''.format(d=opts.database, u=opts.username, p=opts.password)
         line, in_string = _backticks(line, in_string)
         yield line
 
-def _removeNewline(line, in_string):
-    new = ''
-    for c in line:
-        if not in_string:
-            if c == "'":
-                in_string = True
-        elif c == "'":
-            in_string = False
-        elif in_string:
-            if c == "\n":
-                 new = new + 'Newline333'
-                 continue
-            if c == "\r":
-                 new = new + 'carriagereturn333'
-                 continue
-        new = new + c
-    return new, in_string
-	
-def _replaceNewline(lines):
-    for line in lines:
-           line = line.replace("Newline333", "\n")
-           line = line.replace("carriagereturn333", "\r")
-           yield line
-
-def _Newline(lines):
-    in_string = False
-    for line in lines:
-        if line is None:
-           continue
-        line, in_string = _removeNewline(line, in_string)
-        yield line
-	
 def main():
     op = OptionParser()
     op.add_option('-d', '--database')
     op.add_option('-u', '--username')
     op.add_option('-p', '--password')
     opts, args = op.parse_args()
+
     lines = (l for l in fileinput.input(args))
-    lines = (l for l in _Newline(lines))
-    f = tempfile.TemporaryFile()
-    for line in lines:
-        f.write(line)
-    f.seek(0)
-    lines = (l for l in f.readlines())
-    f.close()
-    lines = (l for l in _process(opts, lines))
-    for line in _replaceNewline(lines):
-       print line,
+    for line in _process(opts, lines):
+        print line,
+
 
 if __name__ == "__main__":
     main()
