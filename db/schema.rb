@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170305090812) do
+ActiveRecord::Schema.define(version: 20170308084201) do
 
   create_table "customers", force: :cascade do |t|
     t.string   "description"
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 20170305090812) do
   create_table "searches", force: :cascade do |t|
     t.string   "keyword"
     t.string   "zona"
-    t.date     "last_run"
+    t.datetime "last_run"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "user_id"
