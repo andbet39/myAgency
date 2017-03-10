@@ -41,7 +41,7 @@ class SearchesController < ApplicationController
     @search.user = current_user
     respond_to do |format|
       if @search.save
-        format.html { redirect_to searches_path, notice: 'Search was successfully created.' }
+        format.html { redirect_to searches_path, notice: 'La ricerca è stata creata, premi esegui per recuperare gli annunci o aspetta qualche minuto perchè questo avvenga automaticamente.' }
         format.json { render :show, status: :created, location: @search }
       else
         format.html { render :new }
@@ -69,7 +69,7 @@ class SearchesController < ApplicationController
   def destroy
     @search.destroy
     respond_to do |format|
-      format.html { redirect_to searches_url, notice: 'Search was successfully destroyed.' }
+      format.html { redirect_to searches_url, notice: 'La ricerca è stata eliminata.' }
       format.json { head :no_content }
     end
   end
