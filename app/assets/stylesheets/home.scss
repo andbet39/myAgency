@@ -8,3 +8,29 @@
 @import "home/ct-paper";
 @import "home/demo";
 @import "home/examples";
+
+.landing-header .motto {
+    text-align: center;
+    z-index: 3;
+    background-color: rgba(0,0,0,0.5);
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+      border-radius: 30px;
+      color:white;
+      margin-bottom: 20px;
+      margin-top: 8%;
+      margin-left: 0px;
+      margin-right: 0px;
+      padding-bottom: 20px;
+padding-top: 20px;
+  h1{
+    font-size: 50px;
+    font-weight: 800;
+  }
+}
+
+.black-back{
+
+}
