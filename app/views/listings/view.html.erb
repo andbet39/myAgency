@@ -32,7 +32,7 @@
                         <div class="col-xs-7">
                             <div class="numbers">
                                 <p>Prezzo / Mq</p>
-                                <%= @avg_pricemq %>
+                                <%= number_to_currency( @avg_pricemq, unit: "", delimiter: ".",precision:0)  %>
                             </div>
                         </div>
                     </div>
@@ -72,7 +72,7 @@
         </div>
     </div>
     <% end %>
-
+    <%= render 'filterform', search_id: @search.id %>
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -103,7 +103,7 @@
                                 <td >-</td>
                                 <% end %>
                                 <td><%= link_to s.listing.title , s.listing %></td>
-                                <td><%= s.listing.price %></td>
+                                <td><%= number_to_currency( s.listing.price , unit: "", delimiter: ".",precision:0)   %></td>
                                 <td><%= s.listing.mt %></td>
                                 <td><%= s.listing.pricemq %></td>
                                 <td>

@@ -12,32 +12,44 @@ class ListingsController < ApplicationController
   def view
     @has_help = true
 
+
+
     @search = Search.find(params['search_id'])
+    @min_prc = params['min_prc']
+    @max_prc = params['max_prc']
+    @min_mq = params['min_mq']
+    @max_mq = params['max_mq']
+
+
+    @results = @search.search_results.joins(:listing)
+    if(@min_mq != nil && @min_mq != "")
+      @results = @results.where('mt > ?',@min_mq)
+    end
+    if(@max_mq != nil && @max_mq != "")
+      @results = @results.where('mt < ?',@max_mq)
+    end
+    if(@min_prc != nil && @min_prc != "")
+      @results = @results.where('PRICE > ?',@min_prc)
+    end
+    if(@max_prc != nil && @max_prc != "")
+      @results = @results.where('PRICE < ?',@max_prc)
+    end
 
     if !current_user.ispro
       logger.info("Listing for non pro user")
-      @results = @search.search_results.limit(10)
+      @results = @results = @result.limit(10)
     else
       logger.info("Listing for pro user")
-      @results = @search.search_results
+      @results = @results
     end
 
 
-    @newcount =   @search.search_results.where(:is_new => true).count
-    i = 0
-    totpricemq = 0
-    @search.listings.each() do |lis|
 
-      if lis.price != nil && lis.mt != nil && lis.price != ""  && lis.mt != "" && lis.mt !=0
-        pricemq = Integer(lis.price)/Integer(lis.mt)
-        totpricemq = totpricemq + pricemq
-
-        i = i + 1
-      end
-    end
-
-    @avg_pricemq = totpricemq/i
+    @newcount =  @search.search_results.where(:is_new => true).count
+    @avg_pricemq = @search.search_results.joins(:listing).average('price/mt')
     @title = "Annunci per " + @search.keyword + " in zona "+ @search.zone.name
+
+
 
 
     NotificationService.clear_search_notification(@search.id)

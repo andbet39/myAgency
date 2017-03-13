@@ -137,7 +137,7 @@ class ListingService
         listing = Listing.new
         listing.isnew = true
     end
-
+    listing.zone = search.zone
     listing.price = price.delete('€').delete(' ').delete('.')
     listing.title = title
     listing.link  = link

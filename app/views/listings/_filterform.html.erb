@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-xs-12 ">
+      <div class="card">
+          <div class="content">
+          <%=  bootstrap_form_tag url: '/results', layout: :inline ,method:"get" do |f| %>
+          <%= f.text_field :min_mq  , hide_label: true,placeholder: "Min. Mq" ,value: @min_mq%>
+          <%= f.text_field :max_mq  , hide_label: true,placeholder: "Max. Mq" ,value: @max_mq %>
+          <%= f.text_field :min_prc , hide_label: true,placeholder: "Prezzo Min." ,value: @min_prc %>
+          <%= f.text_field :max_prc , hide_label: true ,placeholder: "Prezzo Max.",value: @max_prc %>
+          <input type="hidden" value="<%=search_id%>" name="search_id" />
+          <%= f.submit "Filtra"  %>
+<a href="/results?search_id=<%=search_id %>" class="btn btn-warning"> Reset</a>
+          <% end  %>
+          </div>
+      </div>
+  </div>
+</div>
