@@ -10,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-      <%= f.text_field :keyword , label:"Parola chiave" %>
+      <%= f.text_field :keyword , label:"Parola chiave" ,placeholder:"Es.: No Agenzie" %>
 
       <% zones_array = Zone.all.map { |zone| [zone.name, zone.id] } %>
       <%= f.select(:zone_id)  do %>
