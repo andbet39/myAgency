@@ -13,9 +13,9 @@
       <%= f.text_field :keyword , label:"Parola chiave" ,placeholder:"Es.: No Agenzie" %>
 
       <% zones_array = Zone.all.map { |zone| [zone.name, zone.id] } %>
-      <%= f.select(:zone_id)  do %>
-        <%= options_for_select(zones_array) %>
-      <% end %>
+      <% opt = options_for_select(zones_array,@zone_id) %>
+      <%= f.select :zone_id, opt, { label: "Zona :" } %>
+
 <br>
       <%= f.submit "Crea Ricerca", class:"btn btn-success btn-fill" %>
   <% end %>

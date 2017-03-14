@@ -56,6 +56,7 @@ GEM
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
+    bootstrap-select-rails (1.6.3)
     bootstrap_form (2.6.0)
     bootstrap_notify (0.0.5)
       jquery-rails
@@ -218,6 +219,7 @@ DEPENDENCIES
   acts_as_votable (~> 0.10.0)
   bcrypt
   bootstrap-sass (~> 3.3.6)
+  bootstrap-select-rails
   bootstrap_form
   bootstrap_notify
   byebug
