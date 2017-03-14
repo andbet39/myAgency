@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-xs-12 ">
+      <div class="card">
+          <div class="content">
+          <%=  bootstrap_form_tag url: '/my_listing/index', layout: :inline ,method:"get" do |f| %>
+          <% zones_array = Zone.all.map { |zone| [zone.name, zone.id] } %>
+          <% zones_array.unshift(['Tutte le zone', 'all']) %>
+          <% opt = options_for_select(zones_array,@zone_id) %>
+          <%= f.select :zone_id, opt, { hide_label: true }, { class: "selectpicker" } %>
+          <%= f.text_field :min_mq  , hide_label: true,placeholder: "Min. Mq" ,value: @min_mq%>
+          <%= f.text_field :max_mq  , hide_label: true,placeholder: "Max. Mq" ,value: @max_mq %>
+          <%= f.text_field :min_prc , hide_label: true,placeholder: "Prezzo Min." ,value: @min_prc %>
+          <%= f.text_field :max_prc , hide_label: true ,placeholder: "Prezzo Max.",value: @max_prc %>
+          <%= f.submit "Filtra"  %>
+          <a href="/my_listing/index %>" class="btn btn-warning"> Reset</a>
+          <% end  %>
+          </div>
+      </div>
+  </div>
+</div>
