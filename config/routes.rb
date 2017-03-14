@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  resources :customers
   get 'notification/view'
 
   mount Crono::Web, at: '/crono'

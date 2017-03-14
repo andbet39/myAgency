@@ -1,13 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  description: MyString
-  source: MyString
-  : 
-  user_id: 1
+  name: MyString
+  surname: MyString
+  phone1: MyString
+  phone2: MyString
+  address: MyString
+  email: MyString
 
 two:
-  description: MyString
-  source: MyString
-  : 
-  user_id: 1
+  name: MyString
+  surname: MyString
+  phone1: MyString
+  phone2: MyString
+  address: MyString
+  email: MyString

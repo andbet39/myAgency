@@ -7,6 +7,7 @@
                   <h4 class="title" >Contatto</h4>
               </div>
                 <div class="content">
+
                     <%= bootstrap_form_for(@interaction ,:url => my_interaction_create_path) do |f| %>
                     <% if @interaction.errors.any? %>
                     <div id="error_explanation">
@@ -20,7 +21,16 @@
                     </div>
                     <% end %>
 
-                    <%= f.text_field :name, label: "Nome contatto" %>
+                    <%= f.fields_for :customer do |ff| %>
+                        <%= ff.text_field :name ,label:"Nome" %>
+                        <%= ff.text_field :surname ,label:"Cognome" %>
+                        <%= ff.text_field :phone1,label:"Telefono" %>
+                        <%= ff.text_field :address,label:"Indirizzo" %>
+
+                        <%= ff.text_field :email ,label:"Email"%>
+
+                    <% end %>
+
                     <%= f.hidden_field :inttype %>
                     <%= f.select :vote, options_for_select(0..10), label:"Interesse" %>
                     <%= f.text_area :note , label: "Note"%>

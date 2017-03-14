@@ -11,13 +11,35 @@ class MyInteractionController < ApplicationController
     @listing = Listing.find(params['listing_id'])
     @interaction.inttype = params['inttype']
 
+    old_interaction = Interaction.where(listing_id: params['listing_id'])
+                                 .where.not('customer_id' => nil).order('updated_at DESC').first
+    if old_interaction != nil
+      logger.info("uso il vecchio customer")
+      @interaction.customer = old_interaction.customer
+    else
+      logger.info("uso il nuovo customer")
+
+      @customer = @interaction.build_customer
+      @interaction.customer.phone1 = @listing.tel
+
+    end
   end
 
   def create
 
-    logger.info(params['listing_id'])
     @interaction = Interaction.new(interaction_params)
+
+    c = Customer.new(interaction_params[:customer_attributes])
+    oldc = Customer.where(name: c.name).where(surname: c.surname).first
+    if oldc == nil
+      c.save!
+      @interaction.customer = c
+    else
+      oldc.update(interaction_params[:customer_attributes])
+      @interaction.customer = oldc
+    end
     @interaction.user = current_user
+
 
     respond_to do |format|
       if @interaction.save
@@ -39,6 +61,7 @@ class MyInteractionController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def interaction_params
-      params.require(:interaction).permit(:name,:type, :vote, :interest, :note, :listing_id, :user_id,:inttype)
+      params.require(:interaction).permit(:name,:type, :vote, :interest, :note, :listing_id, :user_id,:inttype,
+      customer_attributes: [ :name, :surname, :phone1, :phone2, :address, :email ] )
     end
 end

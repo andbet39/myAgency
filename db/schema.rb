@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170312073941) do
+ActiveRecord::Schema.define(version: 20170314154242) do
 
   create_table "crono_jobs", force: :cascade do |t|
     t.string   "job_id",                               null: false
@@ -23,12 +23,14 @@ ActiveRecord::Schema.define(version: 20170312073941) do
   end
 
   create_table "customers", force: :cascade do |t|
-    t.string   "description"
-    t.string   "source"
+    t.string   "name"
+    t.string   "surname"
+    t.string   "phone1"
+    t.string   "phone2"
+    t.string   "address"
     t.string   "email"
-    t.integer  "user_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "interactions", force: :cascade do |t|
@@ -38,9 +40,10 @@ ActiveRecord::Schema.define(version: 20170312073941) do
     t.text     "note"
     t.integer  "listing_id"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.string   "name"
+    t.integer  "customer_id"
     t.index ["listing_id"], name: "index_interactions_on_listing_id"
     t.index ["user_id"], name: "index_interactions_on_user_id"
   end
