@@ -11,11 +11,11 @@ class MyInteractionController < ApplicationController
     @listing = Listing.find(params['listing_id'])
     @interaction.inttype = params['inttype']
 
-    old_interaction = Interaction.where(listing_id: params['listing_id'])
-                                 .where.not('customer_id' => nil).order('updated_at DESC').first
-    if old_interaction != nil
+    customer = Customer.where(:phone1 => @listing.tel).first
+
+    if customer != nil
       logger.info("uso il vecchio customer")
-      @interaction.customer = old_interaction.customer
+      @interaction.customer = customer
     else
       logger.info("uso il nuovo customer")
 
@@ -30,7 +30,7 @@ class MyInteractionController < ApplicationController
     @interaction = Interaction.new(interaction_params)
 
     c = Customer.new(interaction_params[:customer_attributes])
-    oldc = Customer.where(name: c.name).where(surname: c.surname).first
+    oldc = Customer.where(phone1: c.phone1).first
     if oldc == nil
       c.save!
       @interaction.customer = c

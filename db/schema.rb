@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170314154242) do
+ActiveRecord::Schema.define(version: 20170315054729) do
 
   create_table "crono_jobs", force: :cascade do |t|
     t.string   "job_id",                               null: false
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20170314154242) do
     t.string   "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
   end
 
   create_table "interactions", force: :cascade do |t|
