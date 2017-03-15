@@ -11,10 +11,13 @@ class MyInteractionController < ApplicationController
     @listing = Listing.find(params['listing_id'])
     @interaction.inttype = params['inttype']
 
-    customer = Customer.where(:phone1 => @listing.tel).first
 
+    customer = Customer.where(:phone1 => @listing.tel).first
+    @old_interactions=[]
     if customer != nil
       logger.info("uso il vecchio customer")
+      @old_interactions = Interaction.where(:customer => customer )
+
       @interaction.customer = customer
     else
       logger.info("uso il nuovo customer")

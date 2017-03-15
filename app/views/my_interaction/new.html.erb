@@ -71,6 +71,47 @@
                     </div>
                 </div>
             </div>
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="header">
+                            <h4 class="title">Altre chiamate al numero <%= @listing.tel %>
+                          </h4>
+                        </div>
+                        <div class="content">
+                            <table id="interaction_table" class="table table-bordered table-striped">
+                                <thead>
+                                    <th>Creata</th>
+                                    <th>Tipo</th>
+                                    <th>Voto</th>
+                                    <th>Annuncio</th>
+                                </thead>
+                                <tbody>
+                                    <% @old_interactions.each() do | interaction | %>
+
+                                    <tr>
+                                        <td>
+                                            <%= interaction.created_at.to_formatted_s(:long) %></td>
+
+                                        <td>
+                                            <%= interaction.inttype %></td>
+                                        <td>
+                                            <%= interaction.vote %></td>
+                                            <td><%= link_to('Annuncio' , interaction.listing )%></td>
+
+                                    </tr>
+                                    <% end %>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+
+
         </div>
     </div>
 </div>
