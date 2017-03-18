@@ -28,6 +28,7 @@ gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'crono'
 gem 'haml'
 gem 'sinatra', '2.0.0.beta2', require: nil
+gem "react_on_rails", "~> 6"
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
