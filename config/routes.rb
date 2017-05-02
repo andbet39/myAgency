@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
 
+  get 'flow/index'
+
+  get 'hello_world', to: 'hello_world#index'
   resources :customers
   get 'notification/view'
 

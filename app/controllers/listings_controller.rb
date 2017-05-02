@@ -37,7 +37,7 @@ class ListingsController < ApplicationController
 
     if !current_user.ispro
       logger.info("Listing for non pro user")
-      @results = @results = @result.limit(10)
+      @results = @results.limit(10)
     else
       logger.info("Listing for pro user")
       @results = @results

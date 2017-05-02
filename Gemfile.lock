@@ -241,6 +241,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-datatables-rails (~> 3.4.0)
   jquery-rails
+  mini_racer
   momentjs-rails
   mysql2
   nokogiri
@@ -259,4 +260,4 @@ DEPENDENCIES
   webpack-rails
 
 BUNDLED WITH
-   1.14.5
+   1.14.6
